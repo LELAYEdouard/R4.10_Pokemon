@@ -9,13 +9,16 @@
     
 </body>
 <!--Data-->
-<script src="../data/pokemon_types.js"></script>
+<script src="../data/type_effectiveness.js"></script>
 
 <!--Class-->
 <script src="../data/class_type.js"></script>
 
 <!--App-->
 <script>
-    console.table(pokemon_types);
+    console.table(Type.all_types);
+    Type.all_types.forEach(element => {
+        console.log(element.toString())
+    });
 </script>
 </html>
