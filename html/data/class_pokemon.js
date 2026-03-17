@@ -1,39 +1,45 @@
-class Pokemon{
-    id;
-    nom;
-    stamina;
-    base_att;
-    base_def;
-    types;
-    att_rap;
-    att_charg;
-    
-    static all_pokemons;
+class Pokemon {
 
-    constructor(i,n,s,ba,bd,t,ar,ac){
-        this.id=i;
-        this.nom=n;
-        this.stamina=s;
-        this.base_att=ba;
-        this.base_def=bd;
-        this.types=t;
-        this.att_rap=ar;
-        this.att_charg=ac;
+    // inisalisalise la variable all_types
+    static initAllPokemons() {
+        let res = [];
+
+        pokemons.forEach(element => {
+            if (element.form == "Normal") {
+                if (res.find(ele => {
+                    return ele.id == element.pokemon_id;
+                }) == null) {
+                    res.push(new Pokemon(element));
+                }
+            }
+        });
+        //console.table(res);
+        return res;
     }
 
-    toString(){ 
-        return `${this.nom} : #${this.id}, [${this.types}], [STA: ${this.stamina},ATK: ${this.base_att},DEF:${this.base_def}], Rapides = [${this.att_rap}], Chargées = [${this.att_charg}]`;
+    static all_pokemons = Pokemon.initAllPokemons();
+
+    static getPokemonID(id){
+        return Type.all_types.find(element => {
+            return element.id == id;
+        });
+    }
+    static getPokemonName(name){
+        return Type.all_types.find(element => {
+            return element.name == name;
+        });
     }
 
-    static all_pokemons(){
- 
+    constructor(objet) {
+        this.id = objet.pokemon_id;
+        this.name = objet.pokemon_name;
+
+
+        // reste a deve
     }
 
-    getTypes(){
-        return this.types;
+    toString() {
+        return "a dev";
     }
 
-    getAttacks(){
-        return this.att_rap
-    }
 }
