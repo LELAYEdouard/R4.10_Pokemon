@@ -6,11 +6,10 @@ class Pokemon {
 
         pokemons.forEach(element => {
             if (element.form == "Normal") {
-
                 if (res.find(ele => {
                     return ele.id == element.pokemon_id;
                 }) == null) {
-                    res.push(new Pokemon(key, value));
+                    res.push(new Pokemon(element));
                 }
             }
         });
@@ -20,12 +19,23 @@ class Pokemon {
 
     static all_pokemons = Pokemon.initAllPokemons();
 
+    static getPokemonID(id){
+        return Type.all_types.find(element => {
+            return element.id == id;
+        });
+    }
+    static getPokemonName(name){
+        return Type.all_types.find(element => {
+            return element.name == name;
+        });
+    }
+
     constructor(objet) {
         this.id = objet.pokemon_id;
-        this.nom = objet.pokemon_name;
+        this.name = objet.pokemon_name;
 
 
-        
+        // reste a deve
     }
 
     toString() {

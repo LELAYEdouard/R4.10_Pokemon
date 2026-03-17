@@ -7,7 +7,7 @@ class Type {
         for (const [key, value] of Object.entries(type_effectiveness)) {
             //console.log(`${key}: ${value}`);
             if (res.find(ele => {
-                return ele.nom == key;
+                return ele.name == key;
             }) == null){
                 res.push(new Type(key, value));
             }
@@ -25,7 +25,7 @@ class Type {
     }
 
     constructor(type, objet) {
-        this.nom = type;
+        this.name = type;
 
         let res = []
 
@@ -59,21 +59,21 @@ class Type {
             res.push(ligne_coef);
         });
 
-        this.liste = res;
+        this.effectiveness = res;
     }
 
     toString() {
-        let message = `${this.nom} : `;
+        let message = `${this.name} : `;
 
-        this.liste.forEach(element => {
+        this.effectiveness.forEach(element => {
             message += element[0] + ' = [' + element[1].join(', ') + '], ';
         });
         return message.slice(0, -2);
     }
 
-    effectiveness(type) {
+    effectivenes(type) {
         let res = null;
-        this.liste.forEach(element => {
+        this.effectiveness.forEach(element => {
             //console.log(element[0]);
             let x = element[1].find(ele => {
                 //console.log(`conpare : ${ele}/ ${type} : ${ele == type}`);
