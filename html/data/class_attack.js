@@ -30,6 +30,3 @@ class Attack {
        
     }
 }
-
-Attack.fill_attacks()
-console.log(Attack.all_attacks["13"].toString());

@@ -26,6 +26,14 @@ class Pokemon{
     }
 
     static all_pokemons(){
+ 
+    }
 
+    getTypes(){
+        return this.types;
+    }
+
+    getAttacks(){
+        return this.att_rap
     }
 }
