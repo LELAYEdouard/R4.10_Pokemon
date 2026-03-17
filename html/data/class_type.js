@@ -57,8 +57,23 @@ class Type {
 
         this.liste.forEach(element => {
             message += element[0] + ' = [' + element[1].join(', ') + '], ';
-        } );
+        });
         return message.slice(0, -2);
     }
 
+    effectiveness(type) {
+        let res = null;
+        this.liste.forEach(element => {
+            //console.log(element[0]);
+            let x = element[1].find(ele => {
+                //console.log(`conpare : ${ele}/ ${type} : ${ele == type}`);
+                return ele == type;
+            });
+            //console.log(x);
+            if (x != null) {
+                res = element[0];
+            }
+        });
+        return res;
+    }
 }
