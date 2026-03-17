@@ -1,18 +1,28 @@
 class Type {
 
     // inisalisalise la variable all_types
-    static init_all_types() {
+    static initAllTypes() {
         let res = [];
 
         for (const [key, value] of Object.entries(type_effectiveness)) {
             //console.log(`${key}: ${value}`);
-            res.push(new Type(key, value));
+            if (res.find(ele => {
+                return ele.nom == key;
+            }) == null){
+                res.push(new Type(key, value));
+            }
         }
         //console.table(res);
         return res;
     }
 
-    static all_types = Type.init_all_types();
+    static all_types = Type.initAllTypes();
+
+    static getType(type){
+        return Type.all_types.find(element => {
+            return element == type;
+        });
+    }
 
     constructor(type, objet) {
         this.nom = type;
