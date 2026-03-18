@@ -4,3 +4,8 @@ function getPokemonByType(){
         return null != element.getTypes();
     });
 }
+
+function getPokemonByAttack(attackName){
+    console.log(Attack.getAttack(1));
+    
+}

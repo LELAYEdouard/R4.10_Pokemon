@@ -48,16 +48,16 @@ class Attack {
                 }).move_id]);
             
         });
-
+        
         pok.fast_moves.forEach(element => {
-            console.log(element)
+
             tabAF.push(
                 Attack.all_attacks[fast_moves.find(elt =>{
                     return elt.name == element;
                 }).move_id]);
             
         });
-
+        // console.log({charged_moves : tabAC, fast_moves : tabAF})
         return {charged_moves : tabAC, fast_moves : tabAF};
 
 
