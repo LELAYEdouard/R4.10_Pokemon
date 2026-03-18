@@ -20,7 +20,20 @@ class Type {
 
     static getType(type){
         return Type.all_types.find(element => {
-            return element == type;
+            return element.name == type;
+        });
+    }
+
+    static getTypeByIDPokemon(id_pokemon){
+        
+        let pokeType = pokemon_types.find(element => {
+            return element.pokemon_id == id_pokemon  && element.form == "Normal";
+        });
+
+        return pokeType.type.map(ele => {
+            //console.log(ele);
+            //console.log(Type.getType(ele));
+            return Type.getType(ele);
         });
     }
 

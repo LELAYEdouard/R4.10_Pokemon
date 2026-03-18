@@ -24,6 +24,7 @@ class Pokemon {
             return element.id == id;
         });
     }
+    
     static getPokemonName(name){
         return Type.all_types.find(element => {
             return element.name == name;
