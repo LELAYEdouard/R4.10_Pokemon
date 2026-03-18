@@ -67,7 +67,6 @@ class Attack {
             }
             
         });
-        console.log({charged_moves : tabAC, fast_moves : tabAF})
         return {charged_moves : tabAC, fast_moves : tabAF};
 
 

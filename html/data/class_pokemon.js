@@ -42,7 +42,6 @@ class Pokemon {
 
         this.type = Type.getTypeByIDPokemon(this.id);
         this.attack= Attack.getAttack(this.id);
-        console.log(this.attack)
         // reste a deve
     }
 
