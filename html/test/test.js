@@ -7,7 +7,6 @@ function getPokemonByType(typeName){
         });
     });
 
-
     console.log(`Liste des ${liste.length} Pokemons :`);
     liste.forEach(element => {
         console.log(`- ${element.toString()}`);
@@ -23,4 +22,20 @@ function getPokemonByAttack(attackName){
     })
 
     console.log(res)
+}
+
+function getAttacksByType(typeName){
+
+}
+
+function sortPokemonByTypeThenName(){
+
+}
+
+function getWeakestEnemies(attackName){
+
+}
+
+function getBestFastAttacksForEnemy(print, pokemonName){
+    
 }

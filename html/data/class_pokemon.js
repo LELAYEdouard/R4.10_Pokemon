@@ -46,7 +46,25 @@ class Pokemon {
     }
 
     toString() {
-        return `${this.name} : #${this.id} [${this.form}], [STA ${this.base.stamina}, ATK ${this.base.attack}, DEF ${this.base.defense}], Rapides = [${this.attack.fast_moves.join(", ")}], Chargée = [${this.attack.charged_moves.join(", ")}]`;
+        return `${this.name} : #${this.id} [${this.typesName().join(", ")}], [STA ${this.base.stamina}, ATK ${this.base.attack}, DEF ${this.base.defense}], Rapides = [${this.attacksFastName().join(", ")}], Chargée = [${this.attacksChargedName().join(", ")}]`;
+    }
+
+    typesName(){
+        return this.type.map(ele => {
+            return ele.name;
+        })
+    }
+
+    attacksFastName(){
+        return this.attack.fast_moves.map(ele => {
+            return ele.nom;
+        })
+    }
+
+    attacksChargedName(){
+        return this.attack.charged_moves.map(ele => {
+            return ele.nom;
+        })
     }
 
     getTypes(){
