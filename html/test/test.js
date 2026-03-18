@@ -1,6 +1,15 @@
 
-function getPokemonByType(){
+// getPokemonByType("Bug")
+function getPokemonByType(typeName){
     let liste = Pokemon.all_pokemons.filter(element => {
-        return null != element.getTypes();
+        return undefined != element.getTypes().find(ele => {
+            return ele.name == typeName;
+        });
     });
+
+
+    for (let index = 0; index < liste.length; index++) {
+        
+        console.log(`<ici le .toString() du ${index+1}> ${liste[index].toString()}`);
+    }
 }
