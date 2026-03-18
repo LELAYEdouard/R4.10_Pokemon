@@ -42,12 +42,12 @@ class Pokemon {
 
         this.type = Type.getTypeByIDPokemon(this.id);
         this.attack= Attack.getAttack(this.id);
-        //console.log(this.attack)
+        console.log(this.attack)
         // reste a deve
     }
 
     toString() {
-        return `${this.name} : #${this.id} [${this.form}], [STA ${this.base.stamina}, ATK ${this.base.attack}, DEF ${this.base.defense}], Rapides = [], Chargée = []`;
+        return `${this.name} : #${this.id} [${this.form}], [STA ${this.base.stamina}, ATK ${this.base.attack}, DEF ${this.base.defense}], Rapides = [${this.attack.fast_moves.join(", ")}], Chargée = [${this.attack.charged_moves.join(", ")}]`;
     }
 
     getTypes(){

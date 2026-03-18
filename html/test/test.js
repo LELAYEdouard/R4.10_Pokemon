@@ -15,6 +15,6 @@ function getPokemonByType(typeName){
 }
 
 function getPokemonByAttack(attackName){
+    // console.log(Pokemon.all_pokemons[1].toString());
     console.log(Attack.getAttack(1));
-    
 }

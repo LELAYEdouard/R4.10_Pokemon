@@ -42,12 +42,14 @@ class Attack {
         let tabAF = [];
 
         pok.charged_moves.forEach(element => {
-            let var1 = Attack.all_attacks[charged_moves.find(elt =>{
+            
+            let var1 = charged_moves.find(elt =>{
                 return elt.name == element;
-            })];
+            })
+            
 
             if(var1){
-                tabAC.push(var1.move_id)
+                tabAC.push(Attack.all_attacks[var1.move_id])
             }
             
             
@@ -55,15 +57,17 @@ class Attack {
         
         pok.fast_moves.forEach(element => {
 
-            let var1 = Attack.all_attacks[fast_moves.find(elt =>{
+            let var1 = fast_moves.find(elt =>{
                 return elt.name == element;
-            })];
+            })
+            
 
             if(var1){
-                tabAC.push(var1.move_id)
+                tabAF.push(Attack.all_attacks[var1.move_id])
             }
             
         });
+        console.log({charged_moves : tabAC, fast_moves : tabAF})
         return {charged_moves : tabAC, fast_moves : tabAF};
 
 
