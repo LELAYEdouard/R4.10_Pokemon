@@ -7,9 +7,9 @@ function getPokemonByType(typeName){
         });
     });
 
-
-    for (let index = 0; index < liste.length; index++) {
-        
-        console.log(`- ${index+1}> ${liste[index].toString()}`);
-    }
+    console.log(`Liste des ${liste.length} Pokemons :`);
+    liste.forEach(element => {
+        console.log(`- ${element.toString()}`);
+    })
 }
+
