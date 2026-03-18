@@ -10,6 +10,6 @@ function getPokemonByType(typeName){
 
     for (let index = 0; index < liste.length; index++) {
         
-        console.log(`<ici le .toString() du ${index+1}> ${liste[index].toString()}`);
+        console.log(`- ${index+1}> ${liste[index].toString()}`);
     }
 }
