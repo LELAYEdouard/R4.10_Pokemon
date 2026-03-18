@@ -32,8 +32,37 @@ class Attack {
 
     static all_attacks = Attack.fill_attacks();
     
-    static getAttack(attId){
-        return Attack.all_attacks[attId];
+    static getAttack(pokId){
+        
+        let pok = pokemon_moves.find((element) => {
+            return element.pokemon_id == pokId && element.form == "Normal";
+        });
+        
+        let tabAC = [];
+        let tabAF = [];
+
+        pok.charged_moves.forEach(element => {
+            tabAC.push(
+                Attack.all_attacks[charged_moves.find(elt =>{
+                    return elt.name == element;
+                }).move_id]);
+            
+        });
+
+        pok.fast_moves.forEach(element => {
+            console.log(element)
+            tabAF.push(
+                Attack.all_attacks[fast_moves.find(elt =>{
+                    return elt.name == element;
+                }).move_id]);
+            
+        });
+
+        return {charged_moves : tabAC, fast_moves : tabAF};
+
+
+
+        
     }
 }
 
