@@ -15,5 +15,12 @@ function getPokemonByType(typeName){
 }
 
 function getPokemonByAttack(attackName){
-    console.log(Pokemon.all_pokemons[1].toString());
+    
+    let res = Pokemon.all_pokemons.filter(element =>{
+        return undefined != element.getAttacks().find(ele => {
+            return ele.name == attackName;
+        });
+    })
+
+    console.log(res)
 }
