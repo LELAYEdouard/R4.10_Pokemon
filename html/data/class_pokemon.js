@@ -18,19 +18,21 @@ class Pokemon {
 
     static getPokemonsByType(type) {
         return Pokemon.all_pokemons.filter(element => {
-            return element.type == type;
+            return element.type.find(element => {
+                return element.name == type;
+            }) != undefined;
         });
     }
 
-    static getWeakestEnemies(attackName){
+    static getWeakestEnemies(attackName) {
         let ack = Attack.getAttackByName(attackName);
         let type = Type.getType(ack.type);
-        
+
         let max = 0;
         let liste_type;
 
-        type.effectiveness.forEach(element =>{
-            if (element[0] > max){
+        type.effectiveness.forEach(element => {
+            if (element[0] > max) {
                 max = element[0];
                 liste_type = element[1];
             }
@@ -40,11 +42,22 @@ class Pokemon {
         let liste_poke = [];
 
         liste_type.forEach(element => {
-            console.log(Pokemon.getPokemonsByType(element));
-           liste_poke.concat(Pokemon.getPokemonsByType(element));
+            //console.log(Pokemon.getPokemonsByType(element));
+            liste_poke = liste_poke.concat(Pokemon.getPokemonsByType(element));
         })
-        console.log(liste_poke);
+
+        let uniqueArray = liste_poke.filter(function (item, pos) {
+            return liste_poke.indexOf(item) == pos;
+        })
+
+        //console.log(uniqueArray);
+
+        console.log(`Liste des ${uniqueArray.length} Pokemons ou l'attaque ${attackName} est efficase sur eu : `);
+        uniqueArray.forEach(element => {
+            console.log(`- ${element.toString()}`);
+        });
     }
+
 
     constructor(objet) {
         this.id = objet.pokemon_id;
@@ -92,7 +105,7 @@ class Pokemon {
         return this.attack;
     }
 
-    
+
 }
 
 
