@@ -5,21 +5,45 @@ class Pokemon {
     static all_pokemons = [];
 
     static getPokemonID(id) {
-        return Type.all_types.find(element => {
+        return Pokemon.all_pokemons.find(element => {
             return element.id == id;
         });
     }
 
     static getPokemonName(name) {
-        return Type.all_types.find(element => {
+        return Pokemon.all_pokemons.find(element => {
             return element.name == name;
+        });
+    }
+
+    static getPokemonsByType(type) {
+        return Pokemon.all_pokemons.filter(element => {
+            return element.type == type;
         });
     }
 
     static getWeakestEnemies(attackName){
         let ack = Attack.getAttackByName(attackName);
         let type = Type.getType(ack.type);
-        console.log(type.toString());
+        
+        let max = 0;
+        let liste_type;
+
+        type.effectiveness.forEach(element =>{
+            if (element[0] > max){
+                max = element[0];
+                liste_type = element[1];
+            }
+        });
+
+        //console.table(liste_type);
+        let liste_poke = [];
+
+        liste_type.forEach(element => {
+            console.log(Pokemon.getPokemonsByType(element));
+           liste_poke.concat(Pokemon.getPokemonsByType(element));
+        })
+        console.log(liste_poke);
     }
 
     constructor(objet) {
