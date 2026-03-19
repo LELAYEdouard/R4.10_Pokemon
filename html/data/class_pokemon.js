@@ -16,6 +16,11 @@ class Pokemon {
         });
     }
 
+    static getWeakestEnemies(attackName){
+        let ack = Attack.getAttackByName(attackName);
+        let type = Type.getType(ack.type);
+    }
+
     constructor(objet) {
         this.id = objet.pokemon_id;
         this.name = objet.pokemon_name;
@@ -61,6 +66,8 @@ class Pokemon {
     getAttacks() {
         return this.attack;
     }
+
+    
 }
 
 
