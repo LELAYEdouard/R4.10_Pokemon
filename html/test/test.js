@@ -15,11 +15,12 @@ function getPokemonByType(typeName){
 
 function getPokemonByAttack(attackName){
     
-    let res = Pokemon.all_pokemons.filter(element =>{
-        return undefined != element.getAttacks().find(ele => {
-            return ele.name == attackName;
-        });
-    })
+    let res = Pokemon.all_pokemons.filter(element => {
+        let tabAttack = element.attack.charged_moves.concat(element.attack.fast_moves);
+        return tabAttack.find(move => {
+            return move.nom == attackName;
+        })
+    });
 
     console.log(res)
 }
