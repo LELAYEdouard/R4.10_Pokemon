@@ -32,7 +32,29 @@ function getAttacksByType(typeName){
 }
 
 function sortPokemonByTypeThenName(){
+    let liste = Pokemon.all_pokemons.sort((a,b) => {
+        if (a.type.length == b.type.length){
+            a.type.sort();
+            b.type.sort();
+            
+            for (let index = 0; index < a.type.length; index++) {
+                if (a.type[index] != b.type[index]){
+                    //console.log(typeof a.type[index]);
+                    return a.type[index].name.localeCompare(b.type[index].name);
+                }
+            }
+            return a.name.localeCompare(b.name);
 
+        }
+        else {
+            return a.type.length - b.type.length;
+        }
+    });
+
+    console.log(`Liste des ${liste.length} Pokemons trier avec leurs types puis leur nom :`);
+    liste.forEach(element => {
+        console.log(`- ${element.toString()}`);
+    })
 }
 
 function getWeakestEnemies(attackName){
