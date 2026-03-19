@@ -58,12 +58,10 @@ function sortPokemonByTypeThenName(){
     console.log(`Liste des ${liste.length} Pokemons trier avec leurs types puis leur nom :`);
     liste.forEach(element => {
         console.log(`- ${element.toString()}`);
-    })
+    });
 }
 
-function getWeakestEnemies(attackName){
 
-}
 
 function getBestFastAttacksForEnemy(print, pokemonName){
     
