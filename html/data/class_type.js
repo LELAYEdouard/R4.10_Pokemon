@@ -1,33 +1,19 @@
 class Type {
 
-    // inisalisalise la variable all_types
-    static initAllTypes() {
-        let res = [];
 
-        for (const [key, value] of Object.entries(type_effectiveness)) {
-            //console.log(`${key}: ${value}`);
-            if (res.find(ele => {
-                return ele.name == key;
-            }) == null){
-                res.push(new Type(key, value));
-            }
-        }
-        //console.table(res);
-        return res;
-    }
 
-    static all_types = Type.initAllTypes();
+    static all_types = [];
 
-    static getType(type){
+    static getType(type) {
         return Type.all_types.find(element => {
             return element.name == type;
         });
     }
 
-    static getTypeByIDPokemon(id_pokemon){
-        
+    static getTypeByIDPokemon(id_pokemon) {
+
         let pokeType = pokemon_types.find(element => {
-            return element.pokemon_id == id_pokemon  && element.form == "Normal";
+            return element.pokemon_id == id_pokemon && element.form == "Normal";
         });
 
         return pokeType.type.map(ele => {
@@ -100,3 +86,21 @@ class Type {
         return res;
     }
 }
+
+// inisalisalise la variable all_types
+function fill_types() {
+    let res = [];
+
+    for (const [key, value] of Object.entries(type_effectiveness)) {
+        //console.log(`${key}: ${value}`);
+        if (res.find(ele => {
+            return ele.name == key;
+        }) == null) {
+            res.push(new Type(key, value));
+        }
+    }
+    //console.table(res);
+    return res;
+}
+
+Type.all_types = fill_types();
