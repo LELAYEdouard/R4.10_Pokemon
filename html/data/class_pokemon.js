@@ -1,29 +1,16 @@
+
+
 class Pokemon {
 
-    // inisalisalise la variable all_types
-    static initAllPokemons() {
-        let res = [];
+    static all_pokemons = [];
 
-        pokemons.forEach(element => {
-            if (element.form == "Normal") {
-                if (res[element.pokemon_id] == undefined) {
-                    res[element.pokemon_id] = new Pokemon(element);
-                }
-            }
-        });
-        //console.table(res);
-        return res;
-    }  
-
-    static all_pokemons = Pokemon.initAllPokemons();
-
-    static getPokemonID(id){
+    static getPokemonID(id) {
         return Type.all_types.find(element => {
             return element.id == id;
         });
     }
 
-    static getPokemonName(name){
+    static getPokemonName(name) {
         return Type.all_types.find(element => {
             return element.name == name;
         });
@@ -41,7 +28,7 @@ class Pokemon {
         };
 
         this.type = Type.getTypeByIDPokemon(this.id);
-        this.attack= Attack.getAttack(this.id);
+        this.attack = Attack.getAttack(this.id);
         // reste a deve
     }
 
@@ -49,29 +36,48 @@ class Pokemon {
         return `${this.name} : #${this.id} [${this.typesName().join(", ")}], [STA ${this.base.stamina}, ATK ${this.base.attack}, DEF ${this.base.defense}], Rapides = [${this.attacksFastName().join(", ")}], Chargée = [${this.attacksChargedName().join(", ")}]`;
     }
 
-    typesName(){
+    typesName() {
         return this.type.map(ele => {
             return ele.name;
         })
     }
 
-    attacksFastName(){
+    attacksFastName() {
         return this.attack.fast_moves.map(ele => {
             return ele.nom;
         })
     }
 
-    attacksChargedName(){
+    attacksChargedName() {
         return this.attack.charged_moves.map(ele => {
             return ele.nom;
         })
     }
 
-    getTypes(){
+    getTypes() {
         return this.type;
     }
 
-    getAttacks(){
+    getAttacks() {
         return this.attack;
     }
 }
+
+
+
+// inisalisalise la variable all_types
+function fill_pokemons() {
+    let res = [];
+
+    pokemons.forEach(element => {
+        if (element.form == "Normal") {
+            if (res[element.pokemon_id] == undefined) {
+                res[element.pokemon_id] = new Pokemon(element);
+            }
+        }
+    });
+    //console.table(res);
+    return res;
+}
+
+Pokemon.all_pokemons = fill_pokemons();
