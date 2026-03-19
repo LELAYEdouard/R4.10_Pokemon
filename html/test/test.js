@@ -69,7 +69,3 @@ function sortPokemonByTypeThenName(){
 
 
 
-function getBestFastAttacksForEnemy(print, pokemonName){
-    
-}
-
