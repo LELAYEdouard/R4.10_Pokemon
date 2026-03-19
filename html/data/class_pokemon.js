@@ -67,6 +67,15 @@ class Pokemon {
         return this.attack;
     }
 
+    getBestFastAttacksForEnemy(print, pokemonName){
+        if(print){
+            console.log(Pokemon.getWeakestEnemies(pokemonName))
+        }else{
+
+        }
+    }
+
+
     
 }
 
