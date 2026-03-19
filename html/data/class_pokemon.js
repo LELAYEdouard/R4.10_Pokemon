@@ -70,7 +70,7 @@ class Pokemon {
 
     getBestFastAttacksForEnemy(print, pokemonName){
         if(print){
-            console.log(Pokemon.getWeakestEnemies(pokemonName))
+            console.log(Pokemon.getPokemonName(pokemonName))
         }else{
 
         }
