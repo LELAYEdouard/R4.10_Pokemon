@@ -1,6 +1,10 @@
 
+
+
+
 // getPokemonByType("Bug")
 function getPokemonByType(typeName){
+    console.log(Attack.all_attacks)
     let liste = Pokemon.all_pokemons.filter(element => {
         return undefined != element.getTypes().find(ele => {
             return ele.name == typeName;
@@ -42,3 +46,4 @@ function getWeakestEnemies(attackName){
 function getBestFastAttacksForEnemy(print, pokemonName){
     
 }
+

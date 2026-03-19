@@ -11,26 +11,13 @@ class Attack {
         this.type=t;
         this.puissance=p;
         this.duree=d;
+        
     }
     toString(){
         return `${this.nom} : #${this.id}, ${this.type}, ${this.puissance}, ${this.duree}ms`;
     }
-    
-    static fill_attacks(){
-        let res = {};
 
-        fast_moves.forEach(element => {
-            res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);
-        });
-        
-        charged_moves.forEach(element => {
-            res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);
-        });
-        
-        return res;
-    }
-
-    static all_attacks = Attack.fill_attacks();
+    static all_attacks = {};
     
     static getAttack(pokId){
         
@@ -69,10 +56,23 @@ class Attack {
         });
         return {charged_moves : tabAC, fast_moves : tabAF};
 
-
-
-        
     }
 }
 
 
+function fill_attacks(){
+    let res = {};
+    
+    fast_moves.forEach(element => {
+        res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);
+    });
+    
+    charged_moves.forEach(element => {
+        res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);
+    });
+
+    return res;
+    
+}
+
+Attack.all_attacks = fill_attacks()
