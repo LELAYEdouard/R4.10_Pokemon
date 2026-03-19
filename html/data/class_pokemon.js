@@ -19,6 +19,7 @@ class Pokemon {
     static getWeakestEnemies(attackName){
         let ack = Attack.getAttackByName(attackName);
         let type = Type.getType(ack.type);
+        console.log(type.toString());
     }
 
     constructor(objet) {
