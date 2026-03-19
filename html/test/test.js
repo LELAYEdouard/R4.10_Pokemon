@@ -21,8 +21,10 @@ function getPokemonByAttack(attackName){
             return move.nom == attackName;
         })
     });
-
-    console.log(res)
+    console.log(`Liste des ${res.length} Pokemons avec l'attaque ${attackName}:`);
+    res.forEach(element => {
+        console.log(`- ${element.toString()}`);
+    })
 }
 
 function getAttacksByType(typeName){
