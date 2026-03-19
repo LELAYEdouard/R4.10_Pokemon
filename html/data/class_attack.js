@@ -57,6 +57,43 @@ class Attack {
         return {charged_moves : tabAC, fast_moves : tabAF};
 
     }
+
+    static getAttackByName(nom){
+        let pok = pokemon_moves.find((element) => {
+            return element.name == nom && element.form == "Normal";
+        });
+        
+        let tabAC = [];
+        let tabAF = [];
+
+        pok.charged_moves.forEach(element => {
+            
+            let var1 = charged_moves.find(elt =>{
+                return elt.name == element;
+            })
+            
+
+            if(var1){
+                tabAC.push(Attack.all_attacks[var1.move_id])
+            }
+            
+            
+        });
+        
+        pok.fast_moves.forEach(element => {
+
+            let var1 = fast_moves.find(elt =>{
+                return elt.name == element;
+            })
+            
+
+            if(var1){
+                tabAF.push(Attack.all_attacks[var1.move_id])
+            }
+            
+        });
+        return {charged_moves : tabAC, fast_moves : tabAF};
+    }
 }
 
 
