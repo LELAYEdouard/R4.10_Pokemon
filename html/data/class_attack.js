@@ -59,19 +59,15 @@ class Attack {
     }
 
     static getAttackByName(nom){
-        console.log(Attack.all_attacks);
+        //console.log(Attack.all_attacks);
         let res = Attack.all_attacks.find((element) => {
+            if (element == undefined){
+                return false;
+            }
             return element.nom == nom;
         });
 
-        if (res == undefined){
-            res = Attack.all_attacks.find((element) => {
-            return element.name == nom;
-            });
-        }
-
-        return res;
-        
+        return res;   
     }
 }
 
