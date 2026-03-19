@@ -98,7 +98,7 @@ class Attack {
 
 
 function fill_attacks(){
-    let res = {};
+    let res = [];
     
     fast_moves.forEach(element => {
         res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);

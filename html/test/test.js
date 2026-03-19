@@ -32,15 +32,13 @@ function getPokemonByAttack(attackName){
 }
 
 function getAttacksByType(typeName){
-    console.log(Attack.all_attacks)
-    Attack.all_attacks.forEach(element => {
-        console.log(element)
-        
+    let res = Attack.all_attacks.filter(element => { 
+        return element.type == typeName;
     });
-    // console.log(`Liste des ${res.length} Attaques du type ${typeName}:`);
-    // res.forEach(element => {
-    //     console.log(`- ${element.toString()}`);
-    // })
+    console.log(`Liste des ${res.length} Attaques du type ${typeName}:`);
+    res.forEach(element => {
+        console.log(`- ${element.toString()}`);
+    })
 }
 
 function sortPokemonByTypeThenName(){
