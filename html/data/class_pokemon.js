@@ -52,7 +52,7 @@ class Pokemon {
 
         //console.log(uniqueArray);
 
-        console.log(`Liste des ${uniqueArray.length} Pokemons ou l'attaque ${attackName} est efficase sur eu : `);
+        console.log(`Liste des ${uniqueArray.length} Pokemons ou l'attaque ${attackName} est efficase sur eux : `);
         uniqueArray.forEach(element => {
             console.log(`- ${element.toString()}`);
         });
