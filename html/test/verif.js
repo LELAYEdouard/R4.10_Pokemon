@@ -71,17 +71,13 @@ function sortPokemonByTypeThenName(){
 function fastFight(pokemonNameA, pokemonNameB){
     pokeA = Pokemon.getPokemonName(pokemonNameA);
     pokeB = Pokemon.getPokemonName(pokemonNameB);
-    pvA = pokeA.base.stamina;
-    pvB = pokeB.base.stamina;
 
     console.log(pokeA);
     console.log(pokeB);
 
     let scrore = [];
 
-    while (pvA != 0 && pvB != 0){
-
-    }
+    
 }
 
 
