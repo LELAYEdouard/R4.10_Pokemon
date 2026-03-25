@@ -114,6 +114,9 @@ class Pokemon {
         let ennemi= Pokemon.getPokemonName(pokemonName);
         let max = -1;
         let obj = {};
+        obj.atk = {nom:""}
+        obj.pts = 0
+        obj.eff = 0
         tabAttack.forEach(element => {
             
             
@@ -128,12 +131,13 @@ class Pokemon {
             if(print){
                 console.log(element.toString() ," : ", degat)
             }
-            if(max < degat){
+            if(max < degat || (max == degat && ack.nom.localeCompare(obj.atk.nom) == -1)){
                 max = degat;
                 obj.atk = ack
                 obj.pts = degat
                 obj.eff = coef
-            }            
+            } 
+            
         })
         
         return obj;
