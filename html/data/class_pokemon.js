@@ -109,23 +109,34 @@ class Pokemon {
     }
 
     getBestFastAttacksForEnemy(print, pokemonName){
-        if(print){
-            let tabAttack = this.attack.fast_moves;
-            tabAttack.forEach(element => {
-                console.log(element.toString())
-                
-                let ack = Attack.getAttackByName(element.nom);
-                let type = Type.getType(ack.type);
-                console.log(type)
-            })
-
-                
+        
+        let tabAttack = this.attack.fast_moves;
+        let ennemi= Pokemon.getPokemonName(pokemonName);
+        let max = -1;
+        let obj = {};
+        tabAttack.forEach(element => {
             
-            let ennemi= Pokemon.getPokemonName(pokemonName);
-            console.log(ennemi)
-        }else{
-
-        }
+            
+            let ack = Attack.getAttackByName(element.nom);
+            let type = Type.getType(ack.type);
+            let coef = 1;
+            ennemi.getTypes().forEach(typeEnnemi=>{
+                
+                coef *=type.effectivenes(typeEnnemi.name)
+            })
+            let degat = element.puissance * coef * (this.base.attack / ennemi.base.defense)
+            if(print){
+                console.log(element.toString() ," : ", degat)
+            }
+            if(max < degat){
+                max = degat;
+                obj.atk = ack
+                obj.pts = degat
+                obj.eff = coef
+            }            
+        })
+        
+        return obj;
     }
 
 
