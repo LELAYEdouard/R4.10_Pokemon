@@ -79,9 +79,54 @@ function fastFight(pokemonNameA, pokemonNameB){
 
     let scrore = [];
 
-    while (pvA != 0 && pvB != 0){
-
+    while (pvA >= 0 && pvB >= 0){
+        if (scrore.length%2 == 0){
+            let attack = pokeA.getBestFastAttacksForEnemy(false, pokemonNameB);
+            scrore.push({
+                round : (scrore.length)+1,
+                attack : pokemonNameA,
+                ack : pokeA.base.attack,
+                defender : pokemonNameB,
+                def : pokeB.base.defense,
+                nameAttack : attack.atk.nom,
+                effis : attack.eff,
+                damage :  attack.pts,
+                pvLeft : pvA=pvA-attack.pts,
+            })
+            //console.table(scrore);
+        }
+        else{
+            let attack = pokeB.getBestFastAttacksForEnemy(false, pokemonNameA);
+            scrore.push({
+                round : (scrore.length)+1,
+                attack : pokemonNameB,
+                ack : pokeB.base.attack,
+                defender : pokemonNameA,
+                def : pokeA.base.defense,
+                nameAttack : attack.atk.nom,
+                effis : attack.eff,
+                damage :  attack.pts,
+                pvLeft : pvB=pvB-attack.pts,
+            })
+            //console.table(scrore);
+        }
     }
+
+    res = scrore.map(ele => {
+        return {
+                "Tour" : ele.round,
+                "Attaquant" : ele.attack,
+                "ATK" : ele.ack,
+                "Défenseur" : ele.defender,
+                "DEF" : ele.def,
+                "Nom Attaque" : ele.nameAttack,
+                "Efficacité" : ele.effis,
+                "Dégâts" : ele.damage,
+                "Reste" : ele.pvLeft,
+        }
+    });
+
+    console.table(res);
 }
 
 
