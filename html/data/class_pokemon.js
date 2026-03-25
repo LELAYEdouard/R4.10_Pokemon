@@ -130,9 +130,9 @@ class Pokemon {
             }
             if(max < degat){
                 max = degat;
-                obj.atk = ack
-                obj.pts = degat
-                obj.eff = coef
+                obj.atk = ack;
+                obj.pts = Math.round(degat);
+                obj.eff = coef;
             }            
         })
         
