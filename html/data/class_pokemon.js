@@ -110,12 +110,19 @@ class Pokemon {
 
     getBestFastAttacksForEnemy(print, pokemonName){
         if(print){
-            let tabAttack = this.attack.charged_moves.concat(this.attack.fast_moves);
+            let tabAttack = this.attack.fast_moves;
             tabAttack.forEach(element => {
-                console.log(element.toString())})
+                console.log(element.toString())
+                
+                let ack = Attack.getAttackByName(element.nom);
+                let type = Type.getType(ack.type);
+                console.log(type)
+            })
+
                 
             
             let ennemi= Pokemon.getPokemonName(pokemonName);
+            console.log(ennemi)
         }else{
 
         }
