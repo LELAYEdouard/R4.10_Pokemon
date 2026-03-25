@@ -12,6 +12,9 @@ class Pokemon {
 
     static getPokemonName(name) {
         return Pokemon.all_pokemons.find(element => {
+            if(element == undefined){
+                return false;
+            }
             return element.name == name;
         });
     }
@@ -107,7 +110,19 @@ class Pokemon {
 
     getBestFastAttacksForEnemy(print, pokemonName){
         if(print){
-            console.log(Pokemon.getPokemonName(pokemonName))
+            let tabAttack = this.attack.fast_moves;
+            tabAttack.forEach(element => {
+                console.log(element.toString())
+                
+                let ack = Attack.getAttackByName(element.nom);
+                let type = Type.getType(ack.type);
+                console.log(type)
+            })
+
+                
+            
+            let ennemi= Pokemon.getPokemonName(pokemonName);
+            console.log(ennemi)
         }else{
 
         }
