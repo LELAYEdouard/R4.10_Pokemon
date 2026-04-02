@@ -5,7 +5,7 @@
 // getPokemonByType("Bug")
 function getPokemonByType(typeName){
     console.log(Attack.all_attacks)
-    let liste = Pokemon.all_pokemons.filter(element => {
+    let liste = Pokemon.all_pokemons2.filter(element => {
         return undefined != element.getTypes().find(ele => {
             return ele.name == typeName;
         });
@@ -19,7 +19,7 @@ function getPokemonByType(typeName){
 
 function getPokemonByAttack(attackName){
     
-    let res = Pokemon.all_pokemons.filter(element => {
+    let res = Pokemon.all_pokemons2.filter(element => {
         let tabAttack = element.attack.charged_moves.concat(element.attack.fast_moves);
         return tabAttack.find(move => {
             return move.nom == attackName;
@@ -42,11 +42,11 @@ function getAttacksByType(typeName){
 }
 
 function sortPokemonByTypeThenName(){
-    let liste = Pokemon.all_pokemons.sort((a,b) => {
+    let liste = Pokemon.all_pokemons2.sort((a,b) => {
         if (a.type.length == b.type.length){
             a.type.sort();
             b.type.sort();
-            
+            s
             for (let index = 0; index < a.type.length; index++) {
                 if (a.type[index] != b.type[index]){
                     //console.log(typeof a.type[index]);
@@ -68,16 +68,5 @@ function sortPokemonByTypeThenName(){
 }
 
 
-function fastFight(pokemonNameA, pokemonNameB){
-    pokeA = Pokemon.getPokemonName(pokemonNameA);
-    pokeB = Pokemon.getPokemonName(pokemonNameB);
-
-    console.log(pokeA);
-    console.log(pokeB);
-
-    let scrore = [];
-
-    
-}
 
 
