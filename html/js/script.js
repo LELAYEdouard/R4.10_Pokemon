@@ -90,6 +90,30 @@ function ligneFill(ele){
     celule.appendChild(texte);
     ligne.appendChild(celule);
 
+    //img
+    celule = document.createElement("td");
+    let img = document.createElement("img");
+
+    attribut = document.createAttribute("src");
+    attribut.value = `./webp/sprites/${("000"+ele.id).slice(-3)}MS.webp`;
+    img.setAttributeNode(attribut);
+
+    /*attribut = document.createAttribute("onerror");
+    attribut.value = `./webp/${ele.id}MS.webp`;
+    img.setAttributeNode(attribut);*/
+
+    attribut = document.createAttribute("alt");
+    attribut.value = `Pockemun numro ${ele.id}`;
+    img.setAttributeNode(attribut);
+
+    celule.appendChild(img);
+    ligne.appendChild(celule);
+        /*<img
+    src="https://exemple.com/image-inexistante.jpg"
+    onerror="this.src='/fallback.jpg';"
+    alt="Image avec fallback"
+    ></img>*/
+
     return ligne
 }
 
