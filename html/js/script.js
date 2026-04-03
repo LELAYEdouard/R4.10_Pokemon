@@ -21,7 +21,7 @@ function filtre() {
 
     if (filtre_nom != null) {
         data = data.filter(ele => {
-            let reg = new RegExp(filtre_nom, "g");
+            let reg = new RegExp(filtre_nom, "gi");
             return reg.test(ele.name);
         })
     }
@@ -341,5 +341,3 @@ document.getElementById("fastAttackFiltre").addEventListener('change',()=> {
     update()
     console.log("update: " , filtre_attaque_rapide)
 })
-
-console.log(data)
