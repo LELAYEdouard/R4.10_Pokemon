@@ -135,6 +135,7 @@ alt="Image avec fallback"
 
 function update() {
     filtre()
+    paging()
     tableFill()
 }
 
@@ -207,8 +208,8 @@ function trier(para) {
                 trierFalse()
                 trie_type = true
             }
-            else{
-               data = data.sort((b, a) => {
+            else {
+                data = data.sort((b, a) => {
                     if (a.type.length == b.type.length) {
                         a.type.sort();
                         b.type.sort();
@@ -226,7 +227,7 @@ function trier(para) {
                         return a.type.length - b.type.length;
                     }
                 });
-                trie_type = false 
+                trie_type = false
             }
 
 
@@ -295,7 +296,43 @@ function trier(para) {
         default:
             break;
     }
+
     tableFill()
 }
 
+function paging(para = '0') {
+    switch (para) {
+        case '+':
+            page++
+            break;
+        case '-':
+            page--
+            break;
+
+        default:
+            page = 0
+            break;
+    }
+    
+    /*cible = Object.values($('.nbPage'))
+    console.log(typeof cible)
+    cible.forEach(element => {
+        let texte = document.createTextNode(`Page : ${page}`);
+        element.appendChild(texte);
+    });*/
+
+    
+
+    let label = document.createElement("label");
+    let texte = document.createTextNode(`Page : ${page}`);
+    let attribut = document.createAttribute("class");
+    attribut.value = "nbPage";
+    label.setAttributeNode(attribut);
+
+    $(".nbPage")[0]
+    label.appendChild(texte);
+    $(".page")[0].replaceChild(label,$(".nbPage")[0])
+
+    tableFill()
+}
 tableFill()
