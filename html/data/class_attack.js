@@ -59,6 +59,12 @@ class Attack {
 
     }
 
+    static getAllAttackFast(){
+        fast_moves.forEach(element => {
+            console.log(element.name)
+        })
+    }
+
     static getAttackByName(nom){
         //console.log(Attack.all_attacks);
         let res = Attack.all_attacks.find((element) => {

@@ -36,7 +36,7 @@ function filtre() {
 
     if (filtre_attaque_rapide != null) {
         data = data.filter(ele => {
-            return null != ele.attack.find(element => {
+            return null != ele.attack.fast_moves.find(element => {
                 return element.nom == filtre_attaque_rapide
             })
         })
@@ -336,3 +336,47 @@ function paging(para = '0') {
     tableFill()
 }
 tableFill()
+
+
+
+Object.keys(Type.all_types).forEach(elt => {
+    let opt = document.createElement("option")
+    opt.innerHTML = elt
+    opt.value = elt
+    document.getElementById("typeFiltre").appendChild(opt)
+})
+
+fast_moves.forEach(elt => {
+    let opt = document.createElement("option")
+    opt.innerHTML = elt.name
+    opt.value = elt.name
+    document.getElementById("fastAttackFiltre").appendChild(opt)
+})
+
+
+
+document.getElementById("nomFiltre").addEventListener('input',()=> {
+    filtre_nom = document.getElementById("nomFiltre").value
+    update()
+    console.log("update: " , filtre_nom)
+})
+
+document.getElementById("typeFiltre").addEventListener('change',()=> {
+    filtre_type = document.getElementById("typeFiltre").value
+    if(filtre_type === ""){
+        filtre_type = null
+    }
+    update()
+    console.log("update: " , filtre_type)
+})
+
+document.getElementById("fastAttackFiltre").addEventListener('change',()=> {
+    filtre_attaque_rapide = document.getElementById("fastAttackFiltre").value
+    if(filtre_attaque_rapide === ""){
+        filtre_attaque_rapide = null
+    }
+    update()
+    console.log("update: " , filtre_attaque_rapide)
+})
+
+console.log(data)
