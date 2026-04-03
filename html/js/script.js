@@ -123,3 +123,10 @@ function update(){
 }
 
 tableFill()
+
+
+document.getElementById("nomFiltre").addEventListener('input',()=> {
+    filtre_nom = document.getElementById("nomFiltre").value
+    update()
+    console.log("update: " , filtre_nom)
+} )
