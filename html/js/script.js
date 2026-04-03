@@ -177,8 +177,25 @@ function trier(para) {
 tableFill()
 
 
+
+Object.keys(Type.all_types).forEach(elt => {
+    let opt = document.createElement("option")
+    opt.innerHTML = elt
+    opt.value = elt
+    document.getElementById("typeFiltre").appendChild(opt)
+})
+
+fast_moves.forEach(elt => {
+    let opt = document.createElement("option")
+    opt.innerHTML = elt.name
+    opt.value = elt.name
+    document.getElementById("fastAttackFiltre").appendChild(opt)
+})
+
+
+
 document.getElementById("nomFiltre").addEventListener('input',()=> {
     filtre_nom = document.getElementById("nomFiltre").value
     update()
     console.log("update: " , filtre_nom)
-} )
+})
