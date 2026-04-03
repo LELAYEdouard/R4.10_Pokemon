@@ -2,16 +2,17 @@
 
 class Pokemon {
 
-    static all_pokemons = [];
+    static all_pokemons = {};
+    static all_pokemons2 = [];
 
     static getPokemonID(id) {
-        return Pokemon.all_pokemons.find(element => {
+        return Pokemon.all_pokemons2.find(element => {
             return element.id == id;
         });
     }
 
     static getPokemonName(name) {
-        return Pokemon.all_pokemons.find(element => {
+        return Pokemon.all_pokemons2.find(element => {
             if(element == undefined){
                 return false;
             }
@@ -20,7 +21,7 @@ class Pokemon {
     }
 
     static getPokemonsByType(type) {
-        return Pokemon.all_pokemons.filter(element => {
+        return Pokemon.all_pokemons2.filter(element => {
             return element.type.find(element => {
                 return element.name == type;
             }) != undefined;
@@ -149,7 +150,20 @@ class Pokemon {
 
 
 // inisalisalise la variable all_types
-function _fill_pokemons() {
+function fill_pokemons() {
+    let res = {};
+
+    pokemons.forEach(element => {
+        if (element.form == "Normal") {
+            if (res[element.pokemon_id] == undefined) {
+                res[element.pokemon_id] = new Pokemon(element);
+            }
+        }
+    });
+    //console.table(res);
+    return res;
+}
+function fill_pokemons2() {
     let res = [];
 
     pokemons.forEach(element => {
@@ -163,4 +177,5 @@ function _fill_pokemons() {
     return res;
 }
 
-Pokemon.all_pokemons = _fill_pokemons();
+Pokemon.all_pokemons = fill_pokemons();
+Pokemon.all_pokemons2 = fill_pokemons2();
