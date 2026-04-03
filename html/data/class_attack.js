@@ -17,8 +17,9 @@ class Attack {
         return `${this.nom} : #${this.id}, ${this.type}, ${this.puissance}, ${this.duree}ms`;
     }
 
-    static all_attacks = [];
-    
+    static all_attacks = {};
+    static all_attacks2 = [];
+
     static getAttack(pokId){
         
         let pok = pokemon_moves.find((element) => {
@@ -72,7 +73,7 @@ class Attack {
 }
 
 
-function _fill_attacks(){
+function fill_attacks(){
     let res = [];
     
     fast_moves.forEach(element => {
@@ -87,4 +88,20 @@ function _fill_attacks(){
     
 }
 
-Attack.all_attacks = _fill_attacks()
+function fill_attacks2(){
+    let res = [];
+    
+    fast_moves.forEach(element => {
+        res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);
+    });
+    
+    charged_moves.forEach(element => {
+        res[element.move_id] = new Attack(element.move_id,element.name,element.type,element.power,element.duration);
+    });
+
+    return res;
+    
+}
+
+Attack.all_attacks = fill_attacks()
+Attack.all_attacks2 = fill_attacks2()

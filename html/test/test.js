@@ -3,7 +3,7 @@
 
 
 // getPokemonByType("Bug")
-function getPokemonByType(typeName){
+function getPokemonsByType(typeName){
     console.log(Attack.all_attacks)
     let liste = Pokemon.all_pokemons2.filter(element => {
         return undefined != element.getTypes().find(ele => {
