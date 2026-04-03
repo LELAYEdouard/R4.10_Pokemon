@@ -149,7 +149,7 @@ class Pokemon {
 
 
 // inisalisalise la variable all_types
-function fill_pokemons() {
+function _fill_pokemons() {
     let res = [];
 
     pokemons.forEach(element => {
@@ -163,4 +163,4 @@ function fill_pokemons() {
     return res;
 }
 
-Pokemon.all_pokemons = fill_pokemons();
+Pokemon.all_pokemons = _fill_pokemons();
