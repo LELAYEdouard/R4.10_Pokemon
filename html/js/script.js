@@ -39,17 +39,22 @@ function filtre() {
 
 function tableFill() {
     let liste = data.slice(page * NB_PAR_PAGE, page * NB_PAR_PAGE + NB_PAR_PAGE)
-    cible = $(".listePoke")[0]
+    //cible = $(".listePoke")[0]
+    /*
     let poubel = cible.childNodes
-
     poubel.forEach(element => {
         cible.removeChild(element)
-    });
+    });*/
+    cible = $("table")[0]
+    cible.removeChild($("tbody")[0])
+    let tbody = document.createElement("tbody");
 
     liste.forEach(element => {
         //console.log(element)
-        cible.appendChild(ligneFill(element))
+        tbody.appendChild(ligneFill(element))
     });
+    cible.appendChild(tbody)
+
 }
 
 function ligneFill(ele) {
