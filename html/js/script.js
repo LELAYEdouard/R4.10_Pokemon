@@ -306,37 +306,70 @@ function paging(para = '0') {
             page++
             break;
         case '-':
-            page--
+            if (page > 0) {
+                page--
+            }
             break;
 
         default:
             page = 0
             break;
     }
-    
-    /*cible = Object.values($('.nbPage'))
-    console.log(typeof cible)
-    cible.forEach(element => {
+
+    cible = $('.page')
+    conteur = $(".nbPage")
+    for (let index = 0; index < cible.length; index++) {
+        let label = document.createElement("label");
         let texte = document.createTextNode(`Page : ${page}`);
-        element.appendChild(texte);
-    });*/
+        label.appendChild(texte);
+        let attribut = document.createAttribute("class");
+        attribut.value = "nbPage";
+        label.setAttributeNode(attribut);
+        cible[index].replaceChild(label, conteur[index])
 
-    
+    }
 
-    let label = document.createElement("label");
-    let texte = document.createTextNode(`Page : ${page}`);
-    let attribut = document.createAttribute("class");
-    attribut.value = "nbPage";
-    label.setAttributeNode(attribut);
+    if (page == 0){
+        cible = $('.prec')
+        for (let index = 0; index < cible.length; index++) {
+            let attribut = document.createAttribute("disabled");
 
-    $(".nbPage")[0]
-    label.appendChild(texte);
-    $(".page")[0].replaceChild(label,$(".nbPage")[0])
+            cible[index].setAttributeNode(attribut)
+        }
+    }
+    else{
+        cible = $('.prec')
+        for (let index = 0; index < cible.length; index++) {
+            let attribut = document.createAttribute("disabled");
+            cible[index].removeAttribute("disabled")
+        }
+    }
+
+    console.log(`${page} == ${pageMax()}`)
+    if (page == pageMax()){
+        cible = $('.suiv')
+        for (let index = 0; index < cible.length; index++) {
+            let attribut = document.createAttribute("disabled");
+            cible[index].setAttributeNode(attribut)
+        }
+    }
+    else{
+        cible = $('.suiv')
+        for (let index = 0; index < cible.length; index++) {
+            cible[index].removeAttribute("disabled")
+        }
+    }
 
     tableFill()
 }
-tableFill()
 
+function pageMax() {
+    //console.log(Math.floor(data.length/NB_PAR_PAGE))
+    return Math.floor(data.length/NB_PAR_PAGE)-1;
+}
+
+tableFill()
+paging()
 
 
 Object.keys(Type.all_types).forEach(elt => {
@@ -355,28 +388,28 @@ fast_moves.forEach(elt => {
 
 
 
-document.getElementById("nomFiltre").addEventListener('input',()=> {
+document.getElementById("nomFiltre").addEventListener('input', () => {
     filtre_nom = document.getElementById("nomFiltre").value
     update()
-    console.log("update: " , filtre_nom)
+    console.log("update: ", filtre_nom)
 })
 
-document.getElementById("typeFiltre").addEventListener('change',()=> {
+document.getElementById("typeFiltre").addEventListener('change', () => {
     filtre_type = document.getElementById("typeFiltre").value
-    if(filtre_type === ""){
+    if (filtre_type === "") {
         filtre_type = null
     }
     update()
-    console.log("update: " , filtre_type)
+    console.log("update: ", filtre_type)
 })
 
-document.getElementById("fastAttackFiltre").addEventListener('change',()=> {
+document.getElementById("fastAttackFiltre").addEventListener('change', () => {
     filtre_attaque_rapide = document.getElementById("fastAttackFiltre").value
-    if(filtre_attaque_rapide === ""){
+    if (filtre_attaque_rapide === "") {
         filtre_attaque_rapide = null
     }
     update()
-    console.log("update: " , filtre_attaque_rapide)
+    console.log("update: ", filtre_attaque_rapide)
 })
 
 console.log(data)

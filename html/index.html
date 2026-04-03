@@ -21,9 +21,9 @@
         <input type="search" id="nomFiltre">
     </div>
     <div class="page">
-        <button onclick="paging('-')">PRéC</button>
-        <button onclick="paging('+')">SUIV</button>
-        <label class="nbPage">Page : 0</label>
+        <button onclick="paging('-')" class="prec" disabled>PRéC</button>
+        <button onclick="paging('+')" class="suiv">SUIV</button>
+        <label class="nbPage"></label>
     </div>
     <table>
         <thead>
@@ -41,6 +41,11 @@
 
         </tbody>
     </table>
+    <div class="page">
+        <button onclick="paging('-')" class="prec">PRéC</button>
+        <button onclick="paging('+')" class="suiv">SUIV</button>
+        <label class="nbPage"></label>
+    </div>
 </body>
 <script src="./data/type_effectiveness.js"></script>
 <script src="./data/pokemon_types.js"></script>
