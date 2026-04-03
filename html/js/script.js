@@ -40,6 +40,11 @@ function filtre() {
 function tableFill() {
     let liste = data.slice(page * NB_PAR_PAGE, page * NB_PAR_PAGE + NB_PAR_PAGE)
     cible = $(".listePoke")[0]
+    let poubel = cible.childNodes
+
+    poubel.forEach(element => {
+        cible.removeChild(element)
+    });
 
     liste.forEach(element => {
         //console.log(element)
@@ -125,11 +130,15 @@ function update() {
 function trier(para) {
     switch (para) {
         case "id":
-
+            data = data.sort((Pa, Pb) =>{
+                return Pa.id - Pb.id
+            });
             break;
 
         case "name":
-
+            data = data.sort((Pa, Pb) =>{
+                return Pa.name - Pb.name
+            });
             break;
 
         case "type":
