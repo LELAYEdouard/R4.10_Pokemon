@@ -10,17 +10,17 @@ let filtre_type = null;
 let filtre_attaque_rapide = null;
 
 
-function filtre(){
+function filtre() {
     data = source
 
-    if (filtre_nom != null){
+    if (filtre_nom != null) {
         data = data.filter(ele => {
-            let reg = new RegExp(filtre_nom,"g");
+            let reg = new RegExp(filtre_nom, "g");
             return reg.test(ele.name);
         })
     }
 
-    if (filtre_type != null){
+    if (filtre_type != null) {
         data = data.filter(ele => {
             return null != ele.type.find(element => {
                 return element.name == filtre_type
@@ -28,7 +28,7 @@ function filtre(){
         })
     }
 
-    if (filtre_attaque_rapide != null){
+    if (filtre_attaque_rapide != null) {
         data = data.filter(ele => {
             return null != ele.attack.find(element => {
                 return element.nom == filtre_attaque_rapide
@@ -37,23 +37,28 @@ function filtre(){
     }
 }
 
-function tableFill(){
-    let liste = data.slice(page*NB_PAR_PAGE, page*NB_PAR_PAGE+NB_PAR_PAGE)
+function tableFill() {
+    let liste = data.slice(page * NB_PAR_PAGE, page * NB_PAR_PAGE + NB_PAR_PAGE)
     cible = $(".listePoke")[0]
-    
+    let poubel = cible.childNodes
+
+    poubel.forEach(element => {
+        cible.removeChild(element)
+    });
+
     liste.forEach(element => {
-        console.log(element)
+        //console.log(element)
         cible.appendChild(ligneFill(element))
     });
 }
 
-function ligneFill(ele){
+function ligneFill(ele) {
     let ligne = document.createElement("tr");
 
     let attribut = document.createAttribute("id");
     attribut.value = ele.id;
     ligne.setAttributeNode(attribut);
-    
+
     //id
     let celule = document.createElement("td");
     let texte = document.createTextNode(ele.id);
@@ -95,7 +100,7 @@ function ligneFill(ele){
     let img = document.createElement("img");
 
     attribut = document.createAttribute("src");
-    attribut.value = `./webp/sprites/${("000"+ele.id).slice(-3)}MS.webp`;
+    attribut.value = `./webp/sprites/${("000" + ele.id).slice(-3)}MS.webp`;
     img.setAttributeNode(attribut);
 
     /*attribut = document.createAttribute("onerror");
@@ -108,17 +113,59 @@ function ligneFill(ele){
 
     celule.appendChild(img);
     ligne.appendChild(celule);
-        /*<img
-    src="https://exemple.com/image-inexistante.jpg"
-    onerror="this.src='/fallback.jpg';"
-    alt="Image avec fallback"
-    ></img>*/
+    /*<img
+src="https://exemple.com/image-inexistante.jpg"
+onerror="this.src='/fallback.jpg';"
+alt="Image avec fallback"
+></img>*/
 
     return ligne
 }
 
-function update(){
+function update() {
     filtre()
+    tableFill()
+}
+
+function trier(para) {
+    switch (para) {
+        case "id":
+            data = data.sort((Pa, Pb) =>{
+                return Pa.id - Pb.id
+            });
+            break;
+
+        case "name":
+            data = data.sort((Pa, Pb) =>{
+                return Pa.name - Pb.name
+            });
+            break;
+
+        case "type":
+
+            break;
+
+        case "stamina":
+            data = data.sort((Pa, Pb) =>{
+                return Pa.base.stamina - Pb.base.stamina
+            });
+            break;
+
+        case "attack":
+            data = data.sort((Pa, Pb) =>{
+                return Pa.base.attack - Pb.base.attack
+            });
+            break;
+
+        case "defence":
+            data = data.sort((Pa, Pb) =>{
+                return Pa.base.defense - Pb.base.defense
+            });
+            break;
+
+        default:
+            break;
+    }
     tableFill()
 }
 
