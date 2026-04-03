@@ -72,7 +72,7 @@ class Attack {
 }
 
 
-function fill_attacks(){
+function _fill_attacks(){
     let res = [];
     
     fast_moves.forEach(element => {
@@ -87,4 +87,4 @@ function fill_attacks(){
     
 }
 
-Attack.all_attacks = fill_attacks()
+Attack.all_attacks = _fill_attacks()

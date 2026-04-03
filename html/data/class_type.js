@@ -2,10 +2,10 @@ class Type {
 
 
 
-    static all_types = [];
+    static _all_types = [];
 
     static getType(type) {
-        return Type.all_types.find(element => {
+        return Type._all_types.find(element => {
             return element.name == type;
         });
     }
@@ -88,7 +88,7 @@ class Type {
 }
 
 // inisalisalise la variable all_types
-function fill_types() {
+function _fill_types() {
     let res = [];
 
     for (const [key, value] of Object.entries(type_effectiveness)) {
@@ -103,4 +103,5 @@ function fill_types() {
     return res;
 }
 
-Type.all_types = fill_types();
+
+Type._all_types = _fill_types();

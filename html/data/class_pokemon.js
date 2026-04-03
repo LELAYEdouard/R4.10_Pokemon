@@ -135,7 +135,7 @@ class Pokemon {
             if(max < degat || (max == degat && ack.nom.localeCompare(obj.atk.nom) == -1)){
                 max = degat;
                 obj.atk = ack;
-                obj.pts = Math.round(degat);
+                obj.pts = Math.ceil(degat);
                 obj.eff = coef;
             }            
         })
