@@ -149,6 +149,14 @@ function trierFalse() {
 }
 
 function trier(para) {
+    let attribut = document.createAttribute("class");
+    attribut.value = "selectFiltre"
+
+    cible = $("th")
+    for (let index = 0; index < cible.length; index++) {
+        cible[index].removeAttribute("class")
+    }
+
     switch (para) {
         case "id":
             if (trie_id == false) {
@@ -165,6 +173,8 @@ function trier(para) {
                 });
                 trie_id = false
             }
+            
+            $("th")[0].setAttributeNode(attribut)
             break;
 
         case "name":
@@ -182,7 +192,7 @@ function trier(para) {
                 });
                 trie_name = false
             }
-
+            $("th")[1].setAttributeNode(attribut)
             break;
 
         case "type":
@@ -229,11 +239,7 @@ function trier(para) {
                 });
                 trie_type = false
             }
-
-
-
-
-
+            $("th")[2].setAttributeNode(attribut)
             break;
 
         case "stamina":
@@ -251,8 +257,7 @@ function trier(para) {
                 });
                 trie_stamina = false
             }
-
-
+            $("th")[3].setAttributeNode(attribut)
             break;
 
         case "attack":
@@ -270,8 +275,7 @@ function trier(para) {
                 });
                 trie_attack = false
             }
-
-
+            $("th")[4].setAttributeNode(attribut)
             break;
 
         case "defence":
@@ -289,8 +293,7 @@ function trier(para) {
                 });
                 trie_defence = false
             }
-
-
+            $("th")[5].setAttributeNode(attribut)
             break;
 
         default:
@@ -345,7 +348,7 @@ function paging(para = '0') {
         }
     }
 
-    console.log(`${page} == ${pageMax()}`)
+    //console.log(`${page} == ${pageMax()}`)
     if (page == pageMax()){
         cible = $('.suiv')
         for (let index = 0; index < cible.length; index++) {
@@ -365,7 +368,7 @@ function paging(para = '0') {
 
 function pageMax() {
     //console.log(Math.floor(data.length/NB_PAR_PAGE))
-    return Math.floor(data.length/NB_PAR_PAGE)-1;
+    return Math.ceil(data.length/NB_PAR_PAGE)-1;
 }
 
 tableFill()

@@ -1,0 +1,13 @@
+.selectFiltre {
+    text-decoration: underline;
+}
+
+table {
+    border: 1px black solid;
+    border-collapse: collapse;
+
+}
+
+tr{
+    border: 1px black solid;
+}
