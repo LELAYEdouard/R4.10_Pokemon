@@ -65,6 +65,7 @@ function tableFill() {
 
 function ligneFill(ele) {
     let ligne = document.createElement("tr");
+    ligne.setAttribute("onclick",`detail(${ele.id});`);
 
     let attribut = document.createAttribute("id");
     attribut.value = ele.id;
@@ -378,3 +379,14 @@ document.getElementById("fastAttackFiltre").addEventListener('change',()=> {
     update()
     console.log("update: " , filtre_attaque_rapide)
 })
+
+function detail(id){
+    let div = document.createElement("div")
+
+    let elm = document.createElement("p")
+    elm.innerHTML = id
+
+    div.appendChild(elm)
+    
+}
+
