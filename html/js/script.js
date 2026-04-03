@@ -9,6 +9,12 @@ let filtre_nom = null;
 let filtre_type = null;
 let filtre_attaque_rapide = null;
 
+let trie_id = false
+let trie_type = false
+let trie_name = false
+let trie_stamina = false
+let trie_attack = false
+let trie_defence = false
 
 function filtre() {
     data = source
@@ -108,9 +114,9 @@ function ligneFill(ele) {
     attribut.value = `./webp/sprites/${("000" + ele.id).slice(-3)}MS.webp`;
     img.setAttributeNode(attribut);
 
-    /*attribut = document.createAttribute("onerror");
-    attribut.value = `./webp/${ele.id}MS.webp`;
-    img.setAttributeNode(attribut);*/
+    attribut = document.createAttribute("onerror");
+    attribut.value = `this.src='./webp/inconu.webp'`;
+    img.setAttributeNode(attribut);
 
     attribut = document.createAttribute("alt");
     attribut.value = `Pockemun numro ${ele.id}`;
@@ -132,40 +138,158 @@ function update() {
     tableFill()
 }
 
+function trierFalse() {
+    trie_id = false
+    trie_name = false
+    trie_type = false
+    trie_stamina = false
+    trie_attack = false
+    trie_defence = false
+}
+
 function trier(para) {
     switch (para) {
         case "id":
-            data = data.sort((Pa, Pb) =>{
-                return Pa.id - Pb.id
-            });
+            if (trie_id == false) {
+
+                data = data.sort((Pa, Pb) => {
+                    return Pa.id - Pb.id
+                });
+                trierFalse()
+                trie_id = true
+            }
+            else {
+                data = data.sort((Pa, Pb) => {
+                    return Pb.id - Pa.id
+                });
+                trie_id = false
+            }
             break;
 
         case "name":
-            data = data.sort((Pa, Pb) =>{
-                return Pa.name - Pb.name
-            });
+            if (trie_name == false) {
+
+                data = data.sort((Pa, Pb) => {
+                    return Pa.name.localeCompare(Pb.name)
+                });
+                trierFalse()
+                trie_name = true
+            }
+            else {
+                data = data.sort((Pa, Pb) => {
+                    return Pb.name.localeCompare(Pa.name)
+                });
+                trie_name = false
+            }
+
             break;
 
         case "type":
+            if (trie_type == false) {
+                data = data.sort((a, b) => {
+                    if (a.type.length == b.type.length) {
+                        a.type.sort();
+                        b.type.sort();
+
+                        for (let index = 0; index < a.type.length; index++) {
+                            if (a.type[index] != b.type[index]) {
+                                //console.log(typeof a.type[index]);
+                                return a.type[index].name.localeCompare(b.type[index].name);
+                            }
+                        }
+                        return a.name.localeCompare(b.name);
+
+                    }
+                    else {
+                        return a.type.length - b.type.length;
+                    }
+                });
+                trierFalse()
+                trie_type = true
+            }
+            else{
+               data = data.sort((b, a) => {
+                    if (a.type.length == b.type.length) {
+                        a.type.sort();
+                        b.type.sort();
+
+                        for (let index = 0; index < a.type.length; index++) {
+                            if (a.type[index] != b.type[index]) {
+                                //console.log(typeof a.type[index]);
+                                return a.type[index].name.localeCompare(b.type[index].name);
+                            }
+                        }
+                        return a.name.localeCompare(b.name);
+
+                    }
+                    else {
+                        return a.type.length - b.type.length;
+                    }
+                });
+                trie_type = false 
+            }
+
+
+
+
 
             break;
 
         case "stamina":
-            data = data.sort((Pa, Pb) =>{
-                return Pa.base.stamina - Pb.base.stamina
-            });
+            if (trie_stamina == false) {
+
+                data = data.sort((Pa, Pb) => {
+                    return Pa.base.stamina - Pb.base.stamina
+                });
+                trierFalse()
+                trie_stamina = true
+            }
+            else {
+                data = data.sort((Pa, Pb) => {
+                    return Pb.base.stamina - Pa.base.stamina
+                });
+                trie_stamina = false
+            }
+
+
             break;
 
         case "attack":
-            data = data.sort((Pa, Pb) =>{
-                return Pa.base.attack - Pb.base.attack
-            });
+            if (trie_attack == false) {
+
+                data = data.sort((Pa, Pb) => {
+                    return Pa.base.attack - Pb.base.attack
+                });
+                trierFalse()
+                trie_attack = true
+            }
+            else {
+                data = data.sort((Pa, Pb) => {
+                    return Pb.base.attack - Pa.base.attack
+                });
+                trie_attack = false
+            }
+
+
             break;
 
         case "defence":
-            data = data.sort((Pa, Pb) =>{
-                return Pa.base.defense - Pb.base.defense
-            });
+            if (trie_defence == false) {
+
+                data = data.sort((Pa, Pb) => {
+                    return Pa.base.defense - Pb.base.defense
+                });
+                trierFalse()
+                trie_defence = true
+            }
+            else {
+                data = data.sort((Pa, Pb) => {
+                    return Pb.base.defense - Pa.base.defense
+                });
+                trie_defence = false
+            }
+
+
             break;
 
         default:
