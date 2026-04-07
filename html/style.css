@@ -8,6 +8,31 @@ table {
 
 }
 
-tr{
+tr {
     border: 1px black solid;
+    height: 50px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+body>div:first-of-type {
+    grid-column: 1;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    overflow: hidden;
+    overflow-y: auto;
+    gap: 20px;
+    padding: 20px 0;
+}
+
+body>div:last-of-type {
+    grid-column: 2;
+    background-color: brown;
 }

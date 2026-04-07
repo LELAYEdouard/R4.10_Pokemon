@@ -1,50 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <title>JS</title>
 </head>
+
 <body>
     <div>
-        <label>Filtrer par</label>
-        <label>Categories : </label>
-        <select id="typeFiltre">
-            <option value="">Toutes</option>
-        </select>
-        <label>Attaques Rapides : </label>
-        <select id="fastAttackFiltre">
-            <option value="">Toutes</option>
-        </select>
-        <label>Nom : </label>
-        <input type="search" id="nomFiltre">
-    </div>
-    <div class="page">
-        <button onclick="paging('-')" class="prec" disabled>PRéC</button>
-        <button onclick="paging('+')" class="suiv">SUIV</button>
-        <label class="nbPage"></label>
-    </div>
-    <table>
-        <thead>
-            <tr>
-                <th onclick="trier('id')">ID</th>
-                <th onclick="trier('name')">NAME</th>
-                <th onclick="trier('type')">TYPES</th>
-                <th onclick="trier('stamina')">STAMINA</th>
-                <th onclick="trier('attack')">ATTACK</th>
-                <th onclick="trier('defence')">DEFENCE</th>
-                <th>IMAGE</th>
-            </tr>
-        </thead>
-        <tbody class="listePoke">
+        <div>
+            <label>Filtrer par</label>
+            <label>Categories : </label>
+            <select id="typeFiltre">
+                <option value="">Toutes</option>
+            </select>
+            <label>Attaques Rapides : </label>
+            <select id="fastAttackFiltre">
+                <option value="">Toutes</option>
+            </select>
+            <label>Nom : </label>
+            <input type="search" id="nomFiltre">
+        </div>
+        <div class="page">
+            <button onclick="paging('-')" class="prec" disabled>PRéC</button>
+            <button onclick="paging('+')" class="suiv">SUIV</button>
+            <label class="nbPage"></label>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th onclick="trier('id')">ID</th>
+                    <th onclick="trier('name')">NAME</th>
+                    <th onclick="trier('type')">TYPES</th>
+                    <th onclick="trier('stamina')">STAMINA</th>
+                    <th onclick="trier('attack')">ATTACK</th>
+                    <th onclick="trier('defence')">DEFENCE</th>
+                    <th>IMAGE</th>
+                </tr>
+            </thead>
+            <tbody class="listePoke">
 
-        </tbody>
-    </table>
-    <div class="page">
-        <button onclick="paging('-')" class="prec">PRéC</button>
-        <button onclick="paging('+')" class="suiv">SUIV</button>
-        <label class="nbPage"></label>
+            </tbody>
+        </table>
+        <div class="page">
+            <button onclick="paging('-')" class="prec">PRéC</button>
+            <button onclick="paging('+')" class="suiv">SUIV</button>
+            <label class="nbPage"></label>
+        </div>
     </div>
     <div id="popup"></div>
 </body>
@@ -66,4 +70,5 @@
 <script>
     //console.log(Pokemon.all_pokemons);
 </script>
+
 </html>
