@@ -8,9 +8,16 @@ table {
 
 }
 
-tr {
+tr, td {
     border: 1px black solid;
     height: 50px;
+}
+
+th{
+    width: 100px;
+}
+td{
+    text-align: center;
 }
 
 body {
@@ -30,6 +37,7 @@ body>div:first-of-type {
     overflow-y: auto;
     gap: 20px;
     padding: 20px 0;
+    
 }
 
 body>div:last-of-type {
