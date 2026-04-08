@@ -63,6 +63,41 @@ function tableFill() {
 
 }
 
+function clearPop(){
+    let body = window.document.getElementsByTagName("body")[0]
+    let child = window.document.getElementsByClassName("popup")[0]
+    console.log(typeof child)
+    let newPop= document.createElement("div");
+    let attribut = document.createAttribute("id");
+    attribut.value = "popup";
+    newPop.setAttributeNode(attribut);
+
+    body.removeChild(child)
+    body.appendChild(newPop)
+}
+
+function popImage(id){
+    //console.log("coucou")
+    clearPop()
+    let pop = window.document.getElementsByClassName("popup")[0]
+    console.log(pop)
+    let img = document.createElement("img");
+
+    let attribut = document.createAttribute("src");
+    attribut.value = `./webp/images/${("000" + id).slice(-3)}.webp`;
+    img.setAttributeNode(attribut);
+
+    attribut = document.createAttribute("onerror");
+    attribut.value = `this.src='./webp/inconu.webp'`;
+    img.setAttributeNode(attribut);
+
+    attribut = document.createAttribute("alt");
+    attribut.value = `Pockemun numro ${id}`;
+    img.setAttributeNode(attribut);
+
+    pop.appendChild(img)
+}
+
 function ligneFill(ele) {
     let ligne = document.createElement("tr");
     ligne.setAttribute("onclick",`detail(${ele.id});`);
@@ -123,8 +158,11 @@ function ligneFill(ele) {
     attribut.value = `Pockemun numro ${ele.id}`;
     img.setAttributeNode(attribut);
 
+    img.addEventListener("mouseover", (ele) => {popImage(ele.id)})
+
     celule.appendChild(img);
     ligne.appendChild(celule);
+
     /*<img
 src="https://exemple.com/image-inexistante.jpg"
 onerror="this.src='/fallback.jpg';"
