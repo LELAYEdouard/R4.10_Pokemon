@@ -417,12 +417,10 @@ document.getElementById("fastAttackFiltre").addEventListener('change', () => {
 })
 
 function detail(id){
-    let div = document.createElement("div")
-
-    let elm = document.createElement("p")
-    elm.innerHTML = id
-
-    div.appendChild(elm)
+    pokemon = Pokemon.getPokemonID(id)
+    
+    
+    console.log(pokemon)
     
 }
 
