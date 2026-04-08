@@ -26,6 +26,7 @@ body {
     height: 100vh;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
+    border-collapse: collapse;
 }
 
 body>div:first-of-type {
@@ -42,7 +43,8 @@ body>div:first-of-type {
 
 body>div:last-of-type {
     grid-column: 2;
-    background-color: brown;
+    background-color: rgb(205, 205, 205);
+    border: 1px black solid;
 }
 
 .popup{
