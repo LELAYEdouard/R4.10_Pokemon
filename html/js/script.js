@@ -460,10 +460,39 @@ document.getElementById("fastAttackFiltre").addEventListener('change', () => {
 })
 
 function detail(id){
-    pokemon = Pokemon.getPokemonID(id)
+    let pokemon = Pokemon.getPokemonID(id)
     
+    let detailConteneur = document.querySelector("#detailConteneur");
+    let detail = document.querySelector("#detail");
+
+    detail.innerHTML = `
+        <h2>${pokemon.name}</h2>
+        <p>ID: ${pokemon.id}</p>
+        <p>Fast moves:</p>
+        <ul>
+            ${pokemon.attack.fast_moves.map(att => `<li>${att.affiche()}</li>`).join("")}
+        </ul>
+        <p>Charged moves:</p>
+        <ul>
+            ${pokemon.attack.charged_moves.map(att => `<li>${att.affiche()}</li>`).join("")}
+        </ul>
+        <p>STAMINA: ${pokemon.base.stamina}</p>
+        <p>ATTACK: ${pokemon.base.attack}</p>
+        <p>DEFENCE: ${pokemon.base.defense}</p>
+        <p>TYPES: ${pokemon.typesName()}</p>
+        <img src="./webp/thumbnails/${("000" + id).slice(-3)}.webp">
+        
+    `;
+console.log(pokemon.attack)
+    detailConteneur.classList.remove("hidden");
+
     
     console.log(pokemon)
     
 }
 
+document.querySelector("#detailConteneur").addEventListener("click", (e) => {
+    if (e.target.id === "detailConteneur") {
+        e.currentTarget.classList.add("hidden");
+    }
+});

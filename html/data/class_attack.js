@@ -17,6 +17,9 @@ class Attack {
         return `${this.nom} : #${this.id}, ${this.type}, ${this.puissance}, ${this.duree}ms`;
     }
 
+    affiche(){
+        return `${this.nom} : N°${this.id}, Type: ${this.type}, Puissance: ${this.puissance}, Duree: ${this.duree}ms`;
+    }
     static all_attacks = {};
     static all_attacks2 = [];
 
