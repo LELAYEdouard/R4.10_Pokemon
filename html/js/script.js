@@ -66,9 +66,9 @@ function tableFill() {
 function clearPop(){
     let body = window.document.getElementsByTagName("body")[0]
     let child = window.document.getElementsByClassName("popup")[0]
-    console.log(typeof child)
+    //console.log(typeof child)
     let newPop= document.createElement("div");
-    let attribut = document.createAttribute("id");
+    let attribut = document.createAttribute("class");
     attribut.value = "popup";
     newPop.setAttributeNode(attribut);
 
@@ -80,7 +80,7 @@ function popImage(id){
     //console.log("coucou")
     clearPop()
     let pop = window.document.getElementsByClassName("popup")[0]
-    console.log(pop)
+    //console.log(pop)
     let img = document.createElement("img");
 
     let attribut = document.createAttribute("src");
@@ -93,6 +93,10 @@ function popImage(id){
 
     attribut = document.createAttribute("alt");
     attribut.value = `Pockemun numro ${id}`;
+    img.setAttributeNode(attribut);
+
+    attribut = document.createAttribute("class");
+    attribut.value = "survol";
     img.setAttributeNode(attribut);
 
     pop.appendChild(img)
@@ -158,7 +162,8 @@ function ligneFill(ele) {
     attribut.value = `Pockemun numro ${ele.id}`;
     img.setAttributeNode(attribut);
 
-    img.addEventListener("mouseover", (ele) => {popImage(ele.id)})
+    img.addEventListener("mouseover", () => {popImage(ele.id)})
+    img.addEventListener("mouseleave", () => {clearPop()})
 
     celule.appendChild(img);
     ligne.appendChild(celule);
