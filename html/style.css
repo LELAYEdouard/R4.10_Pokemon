@@ -44,7 +44,7 @@ body>div:first-of-type {
 body>div:last-of-type {
     grid-column: 2;
     background-color: rgb(205, 205, 205);
-    border: 1px black solid;
+    border-left: 1px black solid;
 }
 
 .popup{
