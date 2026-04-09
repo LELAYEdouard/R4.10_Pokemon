@@ -6,9 +6,7 @@ class Pokemon {
     static all_pokemons2 = [];
 
     static getPokemonID(id) {
-        return Pokemon.all_pokemons2.find(element => {
-            return element.id == id;
-        });
+        return Pokemon.all_pokemons[id];
     }
 
     static getPokemonName(name) {
