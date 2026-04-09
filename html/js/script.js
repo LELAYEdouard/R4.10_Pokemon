@@ -19,6 +19,7 @@ let trie_defence = false
 function filtre() {
     data = source
 
+    // filtre le nom sur le regex
     if (filtre_nom != null) {
         data = data.filter(ele => {
             let reg = new RegExp(filtre_nom, "gi");
@@ -26,6 +27,7 @@ function filtre() {
         })
     }
 
+    // filtre sur la présence du type
     if (filtre_type != null) {
         data = data.filter(ele => {
             return null != ele.type.find(element => {
@@ -34,6 +36,7 @@ function filtre() {
         })
     }
 
+    // filtre sur la présence de l'attaque
     if (filtre_attaque_rapide != null) {
         data = data.filter(ele => {
             return null != ele.attack.fast_moves.find(element => {
@@ -44,6 +47,7 @@ function filtre() {
 }
 
 function tableFill() {
+    // recupe juste le nombre nésésaire
     let liste = data.slice(page * NB_PAR_PAGE, page * NB_PAR_PAGE + NB_PAR_PAGE)
     //cible = $(".listePoke")[0]
     /*
@@ -51,10 +55,13 @@ function tableFill() {
     poubel.forEach(element => {
         cible.removeChild(element)
     });*/
+
+    // vide le tableau
     cible = $("table")[0]
     cible.removeChild($("tbody")[0])
     let tbody = document.createElement("tbody");
 
+    //ajoute toute les ligne
     liste.forEach(element => {
         //console.log(element)
         tbody.appendChild(ligneFill(element))
@@ -63,6 +70,7 @@ function tableFill() {
 
 }
 
+// suprime la popup image et la recrée vide
 function clearPop() {
     let body = window.document.getElementsByTagName("body")[0]
     let child = window.document.getElementsByClassName("popup")[0]
@@ -76,6 +84,7 @@ function clearPop() {
     body.appendChild(newPop)
 }
 
+// ajoute la grande image dans la popup
 function popImage(id) {
     //console.log("coucou")
     clearPop()
@@ -103,6 +112,7 @@ function popImage(id) {
 }
 
 function ligneFill(ele) {
+    //crée la ligne
     let ligne = document.createElement("tr");
     ligne.setAttribute("onclick", `detail(${ele.id});`);
 
@@ -162,6 +172,7 @@ function ligneFill(ele) {
     attribut.value = `Pockemun numro ${ele.id}`;
     img.setAttributeNode(attribut);
 
+    // event popup
     img.addEventListener("mouseover", () => { popImage(ele.id) })
     img.addEventListener("mouseleave", () => { clearPop() })
 
@@ -177,12 +188,14 @@ alt="Image avec fallback"
     return ligne
 }
 
+// mees tout les element a jour
 function update() {
     filtre()
     paging()
     tableFill()
 }
 
+// mes tout les filtre a 0
 function trierFalse() {
     trie_id = false
     trie_name = false
@@ -194,8 +207,9 @@ function trierFalse() {
 
 function trier(para) {
     let attribut = document.createAttribute("class");
-    attribut.value = "selectFiltre"
+    attribut.value = "selectFiltre" // souligne age
 
+    // enleve le soulignage existent
     cible = $("th")
     for (let index = 0; index < cible.length; index++) {
         cible[index].removeAttribute("class")
@@ -203,6 +217,7 @@ function trier(para) {
 
     switch (para) {
         case "id":
+            // trie croisant
             if (trie_id == false) {
 
                 data = data.sort((Pa, Pb) => {
@@ -211,6 +226,7 @@ function trier(para) {
                 trierFalse()
                 trie_id = true
             }
+            // trie décroisant
             else {
                 data = data.sort((Pa, Pb) => {
                     return Pb.id - Pa.id
@@ -222,6 +238,7 @@ function trier(para) {
             break;
 
         case "name":
+            // trie croisant
             if (trie_name == false) {
 
                 data = data.sort((Pa, Pb) => {
@@ -230,6 +247,7 @@ function trier(para) {
                 trierFalse()
                 trie_name = true
             }
+            // trie décroisant
             else {
                 data = data.sort((Pa, Pb) => {
                     return Pb.name.localeCompare(Pa.name)
@@ -240,28 +258,35 @@ function trier(para) {
             break;
 
         case "type":
+            // trie croisant
             if (trie_type == false) {
                 data = data.sort((a, b) => {
+                    // si meme nombre de type
                     if (a.type.length == b.type.length) {
                         a.type.sort();
                         b.type.sort();
 
+                        // compare les type a1 b1, a2 b2
                         for (let index = 0; index < a.type.length; index++) {
                             if (a.type[index] != b.type[index]) {
                                 //console.log(typeof a.type[index]);
                                 return a.type[index].name.localeCompare(b.type[index].name);
                             }
                         }
+                        // compare le nom
                         return a.name.localeCompare(b.name);
 
                     }
+                    // si pas meme nombre de type
                     else {
+                        // le plus petit est selui qui a le moin de type
                         return a.type.length - b.type.length;
                     }
                 });
                 trierFalse()
                 trie_type = true
             }
+            // trie décroisant
             else {
                 data = data.sort((b, a) => {
                     if (a.type.length == b.type.length) {
@@ -287,6 +312,7 @@ function trier(para) {
             break;
 
         case "stamina":
+            // trie croisant
             if (trie_stamina == false) {
 
                 data = data.sort((Pa, Pb) => {
@@ -295,6 +321,7 @@ function trier(para) {
                 trierFalse()
                 trie_stamina = true
             }
+            // trie décroisant
             else {
                 data = data.sort((Pa, Pb) => {
                     return Pb.base.stamina - Pa.base.stamina
@@ -305,6 +332,7 @@ function trier(para) {
             break;
 
         case "attack":
+            // trie croisant
             if (trie_attack == false) {
 
                 data = data.sort((Pa, Pb) => {
@@ -313,6 +341,7 @@ function trier(para) {
                 trierFalse()
                 trie_attack = true
             }
+            // trie décroisant
             else {
                 data = data.sort((Pa, Pb) => {
                     return Pb.base.attack - Pa.base.attack
@@ -323,6 +352,7 @@ function trier(para) {
             break;
 
         case "defence":
+            // trie croisant
             if (trie_defence == false) {
 
                 data = data.sort((Pa, Pb) => {
@@ -331,6 +361,7 @@ function trier(para) {
                 trierFalse()
                 trie_defence = true
             }
+            // trie décroisant
             else {
                 data = data.sort((Pa, Pb) => {
                     return Pb.base.defense - Pa.base.defense
@@ -347,7 +378,10 @@ function trier(para) {
     tableFill()
 }
 
+
 function paging(para = '0') {
+    //paramete de la numro de page
+
     switch (para) {
         case '+':
             page++
@@ -363,6 +397,7 @@ function paging(para = '0') {
             break;
     }
 
+    // affiche le numero de la page
     cible = $('.page')
     conteur = $(".nbPage")
     for (let index = 0; index < cible.length; index++) {
@@ -376,6 +411,7 @@ function paging(para = '0') {
 
     }
 
+    // dé/blocage du bouton présédent
     if (page == 0) {
         cible = $('.prec')
         for (let index = 0; index < cible.length; index++) {
@@ -393,6 +429,7 @@ function paging(para = '0') {
     }
 
     //console.log(`${page} == ${pageMax()}`)
+    // dé/blocage du bouton suivant
     if (page == pageMax()) {
         cible = $('.suiv')
         for (let index = 0; index < cible.length; index++) {
@@ -407,9 +444,10 @@ function paging(para = '0') {
         }
     }
 
-    tableFill()
+    tableFill() //renpli le tableau
 }
 
+//renvoie le numero de la page max
 function pageMax() {
     //console.log(Math.floor(data.length/NB_PAR_PAGE))
     return Math.ceil(data.length / NB_PAR_PAGE) - 1;
@@ -527,6 +565,7 @@ function detail(id) {
     //console.log(pokemon.attack)
     detailConteneur.classList.remove("hidden");
 
+    // bouton de fermeture de la popup
     let x = document.createElement("button");
     let texte = document.createTextNode("x");
     x.appendChild(texte);
@@ -559,6 +598,7 @@ let plus = true
 function affichePlus() {
     if (plus) {
 
+        // affiche les th stats de base
         for (let index = 4; index <= 6; index++) {
             let attribut = document.createAttribute("class");
             attribut.value = "plusPlus";
@@ -567,6 +607,7 @@ function affichePlus() {
             ele.setAttributeNode(attribut)
         }
 
+        // affiche les td stats de base
         for (let index = 4; index <= 6; index++) {
             let ele = document.querySelectorAll(`body>div:first-of-type td:nth-of-type(${index})`)
             //console.log(ele)
@@ -578,6 +619,7 @@ function affichePlus() {
 
         }
 
+        // ajuste le css pour l'affichage
         let ele = document.querySelector(`body>div:first-of-type table`)
         let attribut = document.createAttribute("class");
         attribut.value = "tablePlus";
@@ -587,12 +629,14 @@ function affichePlus() {
         plus = false
     }
     else {
+        // supprime les th stats de base
         for (let index = 4; index <= 6; index++) {
             let ele = document.querySelector(`body>div:first-of-type th:nth-of-type(${index})`)
             //console.log(ele)
             ele.removeAttribute("class")
         }
 
+        // supprime les td stats de base
         for (let index = 4; index <= 6; index++) {
             let ele = document.querySelectorAll(`body>div:first-of-type td:nth-of-type(${index})`)
             //console.log(ele)
@@ -601,9 +645,11 @@ function affichePlus() {
             });
         }
 
+        // ajuste le css pour l'affichage
         document.querySelector(`body>div:first-of-type table`).removeAttribute("class")
         plus = true
     }
 }
 
+// boutton téléphone
 document.querySelector(".plus").addEventListener("click", affichePlus)
