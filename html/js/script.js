@@ -63,11 +63,11 @@ function tableFill() {
 
 }
 
-function clearPop(){
+function clearPop() {
     let body = window.document.getElementsByTagName("body")[0]
     let child = window.document.getElementsByClassName("popup")[0]
     //console.log(typeof child)
-    let newPop= document.createElement("div");
+    let newPop = document.createElement("div");
     let attribut = document.createAttribute("class");
     attribut.value = "popup";
     newPop.setAttributeNode(attribut);
@@ -76,7 +76,7 @@ function clearPop(){
     body.appendChild(newPop)
 }
 
-function popImage(id){
+function popImage(id) {
     //console.log("coucou")
     clearPop()
     let pop = window.document.getElementsByClassName("popup")[0]
@@ -104,7 +104,7 @@ function popImage(id){
 
 function ligneFill(ele) {
     let ligne = document.createElement("tr");
-    ligne.setAttribute("onclick",`detail(${ele.id});`);
+    ligne.setAttribute("onclick", `detail(${ele.id});`);
 
     let attribut = document.createAttribute("id");
     attribut.value = ele.id;
@@ -162,8 +162,8 @@ function ligneFill(ele) {
     attribut.value = `Pockemun numro ${ele.id}`;
     img.setAttributeNode(attribut);
 
-    img.addEventListener("mouseover", () => {popImage(ele.id)})
-    img.addEventListener("mouseleave", () => {clearPop()})
+    img.addEventListener("mouseover", () => { popImage(ele.id) })
+    img.addEventListener("mouseleave", () => { clearPop() })
 
     celule.appendChild(img);
     ligne.appendChild(celule);
@@ -217,7 +217,7 @@ function trier(para) {
                 });
                 trie_id = false
             }
-            
+
             $("th")[0].setAttributeNode(attribut)
             break;
 
@@ -376,7 +376,7 @@ function paging(para = '0') {
 
     }
 
-    if (page == 0){
+    if (page == 0) {
         cible = $('.prec')
         for (let index = 0; index < cible.length; index++) {
             let attribut = document.createAttribute("disabled");
@@ -384,7 +384,7 @@ function paging(para = '0') {
             cible[index].setAttributeNode(attribut)
         }
     }
-    else{
+    else {
         cible = $('.prec')
         for (let index = 0; index < cible.length; index++) {
             let attribut = document.createAttribute("disabled");
@@ -393,14 +393,14 @@ function paging(para = '0') {
     }
 
     //console.log(`${page} == ${pageMax()}`)
-    if (page == pageMax()){
+    if (page == pageMax()) {
         cible = $('.suiv')
         for (let index = 0; index < cible.length; index++) {
             let attribut = document.createAttribute("disabled");
             cible[index].setAttributeNode(attribut)
         }
     }
-    else{
+    else {
         cible = $('.suiv')
         for (let index = 0; index < cible.length; index++) {
             cible[index].removeAttribute("disabled")
@@ -412,7 +412,7 @@ function paging(para = '0') {
 
 function pageMax() {
     //console.log(Math.floor(data.length/NB_PAR_PAGE))
-    return Math.ceil(data.length/NB_PAR_PAGE)-1;
+    return Math.ceil(data.length / NB_PAR_PAGE) - 1;
 }
 
 tableFill()
@@ -459,9 +459,9 @@ document.getElementById("fastAttackFiltre").addEventListener('change', () => {
     console.log("update: ", filtre_attaque_rapide)
 })
 
-function detail(id){
+function detail(id) {
     let pokemon = Pokemon.getPokemonID(id)
-    
+
     let detailConteneur = document.querySelector("#detailConteneur");
     let detail = document.querySelector("#detail");
 
@@ -534,13 +534,14 @@ function detail(id){
     let attribut = document.createAttribute("style");
     attribut.value = `color: red; margin-top: 2em;`;
     x.setAttributeNode(attribut);
-    
+
     x.addEventListener("click", () => {
         //console.log("coucou")
-        detailConteneur.classList.add("hidden")})
+        detailConteneur.classList.add("hidden")
+    })
     window.document.getElementsByClassName("infoPoke")[0].appendChild(x);
     //console.log(pokemon)
-    
+
 }
 
 document.querySelector("#detailConteneur").addEventListener("click", (e) => {
@@ -549,6 +550,60 @@ document.querySelector("#detailConteneur").addEventListener("click", (e) => {
     }
 });
 
-function ligneAttaque(att){
+function ligneAttaque(att) {
     return `<td>${att.id}</td><td>${att.nom}</td><td>${att.type}</td><td>${att.puissance}</td><td>${att.duree}</td>`
 }
+
+let plus = true
+
+function affichePlus() {
+    if (plus) {
+
+        for (let index = 4; index <= 6; index++) {
+            let attribut = document.createAttribute("class");
+            attribut.value = "plusPlus";
+            let ele = document.querySelector(`body>div:first-of-type th:nth-of-type(${index})`)
+            //console.log(ele)
+            ele.setAttributeNode(attribut)
+        }
+
+        for (let index = 4; index <= 6; index++) {
+            let ele = document.querySelectorAll(`body>div:first-of-type td:nth-of-type(${index})`)
+            //console.log(ele)
+            ele.forEach(element => {
+                let attribut = document.createAttribute("class");
+                attribut.value = "plusPlus";
+                element.setAttributeNode(attribut)
+            });
+
+        }
+
+        let ele = document.querySelector(`body>div:first-of-type table`)
+        let attribut = document.createAttribute("class");
+        attribut.value = "tablePlus";
+        //console.log(ele)
+        ele.setAttributeNode(attribut)
+
+        plus = false
+    }
+    else {
+        for (let index = 4; index <= 6; index++) {
+            let ele = document.querySelector(`body>div:first-of-type th:nth-of-type(${index})`)
+            //console.log(ele)
+            ele.removeAttribute("class")
+        }
+
+        for (let index = 4; index <= 6; index++) {
+            let ele = document.querySelectorAll(`body>div:first-of-type td:nth-of-type(${index})`)
+            //console.log(ele)
+            ele.forEach(element => {
+                element.removeAttribute("class")
+            });
+        }
+
+        document.querySelector(`body>div:first-of-type table`).removeAttribute("class")
+        plus = true
+    }
+}
+
+document.querySelector(".plus").addEventListener("click", affichePlus)
