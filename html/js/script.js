@@ -469,10 +469,10 @@ function detail(id){
         <div class="infoPoke">
             <h2>${pokemon.name}</h2>
             <p>ID: ${pokemon.id}</p>
-            <p>TYPES: ${pokemon.typesName()}</p>
+            <p>TYPES: ${pokemon.typesName().join(" ")}</p>
             <img src="./webp/thumbnails/${("000" + id).slice(-3)}.webp">
             
-            <p>State de base</p>
+            <p>Base stats</p>
             <table>
                 <thead>
                     <tr>

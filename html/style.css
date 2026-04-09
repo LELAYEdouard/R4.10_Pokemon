@@ -93,3 +93,42 @@ body>div:last-of-type {
     border: 1px black solid;
     padding: 0 10px;
 }
+
+
+@media (max-width: 640px) {
+    body{
+        display: flex;
+    }
+
+    body>div:first-of-type>div:first-of-type{
+        display: flex;
+        flex-direction: column;
+    }
+
+    body>div:first-of-type th{
+        font-size:small;
+    }
+
+    body > div:last-of-type{
+        display: none;
+    }
+
+    #detail{
+        display: flex;
+        flex-direction: column;
+        width: 80%;
+        height: 70%;
+        overflow-x: scroll;
+    }
+
+    #detail button{
+        position: fixed;
+        bottom: 1em;
+        left: 50%;
+        font-size: xx-large;
+    }
+
+    #detail th, #detail td{
+        padding: 5px;
+    }
+}

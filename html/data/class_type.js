@@ -1,21 +1,25 @@
 class Type {
 
 
-    static all_types = {};
-    static all_types2 = [];
+    static all_types = {}; // version obj
+    static all_types2 = []; // version liste
 
+    // retourne obj Type
     static getType(type) {
         return Type.all_types2.find(element => {
             return element.name == type;
         });
     }
 
+    // retourne les obj Types du poke
     static getTypeByIDPokemon(id_pokemon) {
 
+        // recuper les nom des type
         let pokeType = pokemon_types.find(element => {
             return element.pokemon_id == id_pokemon && element.form == "Normal";
         });
 
+        // recupérer les obj type
         return pokeType.type.map(ele => {
             //console.log(ele);
             //console.log(Type.getType(ele));
@@ -70,24 +74,27 @@ class Type {
         return message.slice(0, -2);
     }
 
+    // renvoi le coef relatif au type paramètre
     effectivenes(type) {
         let res = null;
         this.effectiveness.forEach(element => {
             //console.log(element[0]);
+
+            // cherche la présence du type
             let x = element[1].find(ele => {
                 //console.log(`conpare : ${ele}/ ${type} : ${ele == type}`);
                 return ele == type;
             });
             //console.log(x);
             if (x != null) {
-                res = element[0];
+                res = element[0]; //affecte le coef
             }
         });
         return res;
     }
 }
 
-// inisalisalise la variable all_types
+// inisalisalise la variable all_types obj
 function fill_types() {
     let res = {};
 
@@ -100,6 +107,7 @@ function fill_types() {
     return res;
 }
 
+// inisalisalise la variable all_types liste
 function fill_types2() {
     let res = [];
 
@@ -114,5 +122,6 @@ function fill_types2() {
     //console.table(res);
     return res;
 }
+
 Type.all_types = fill_types();
 Type.all_types2 = fill_types2();

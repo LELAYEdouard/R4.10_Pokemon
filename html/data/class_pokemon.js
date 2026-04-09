@@ -5,10 +5,12 @@ class Pokemon {
     static all_pokemons = {};
     static all_pokemons2 = [];
 
+    // renvoi obj pokemon
     static getPokemonID(id) {
         return Pokemon.all_pokemons[id];
     }
 
+    // renvoi obj pokemon
     static getPokemonName(name) {
         return Pokemon.all_pokemons2.find(element => {
             if(element == undefined){
@@ -18,6 +20,7 @@ class Pokemon {
         });
     }
 
+    // renvoi liste obj pokemons
     static getPokemonsByType(type) {
         return Pokemon.all_pokemons2.filter(element => {
             return element.type.find(element => {
@@ -26,6 +29,7 @@ class Pokemon {
         });
     }
 
+    // renvoi liste obj pokemons faible a set attaque
     static getWeakestEnemies(attackName) {
         let ack = Attack.getAttackByName(attackName);
         let type = Type.getType(ack.type);
@@ -33,6 +37,7 @@ class Pokemon {
         let max = 0;
         let liste_type;
 
+        // recupère la liste des type faible
         type.effectiveness.forEach(element => {
             if (element[0] > max) {
                 max = element[0];
@@ -43,17 +48,19 @@ class Pokemon {
         //console.table(liste_type);
         let liste_poke = [];
 
+        //recupère la liste des poke de type faible
         liste_type.forEach(element => {
             //console.log(Pokemon.getPokemonsByType(element));
             liste_poke = liste_poke.concat(Pokemon.getPokemonsByType(element));
         })
 
+        // recupère uniquement des element unique
         let uniqueArray = liste_poke.filter(function (item, pos) {
             return liste_poke.indexOf(item) == pos;
         })
 
         //console.log(uniqueArray);
-
+        // affiche les element
         console.log(`Liste des ${uniqueArray.length} Pokemons ou l'attaque ${attackName} est efficase sur eux : `);
         uniqueArray.forEach(element => {
             console.log(`- ${element.toString()}`);
@@ -74,31 +81,34 @@ class Pokemon {
 
         this.type = Type.getTypeByIDPokemon(this.id);
         this.attack = Attack.getAttack(this.id);
-        // reste a deve
     }
 
     toString() {
         return `${this.name} : #${this.id} [${this.typesName().join(", ")}], [STA ${this.base.stamina}, ATK ${this.base.attack}, DEF ${this.base.defense}], Rapides = [${this.attacksFastName().join(", ")}], Chargée = [${this.attacksChargedName().join(", ")}]`;
     }
 
+    // liste des nom des type
     typesName() {
         return this.type.map(ele => {
             return ele.name;
         })
     }
 
+    // mon des attaque rapide
     attacksFastName() {
         return this.attack.fast_moves.map(ele => {
             return ele.nom;
         })
     }
 
+    //nom des attck charger
     attacksChargedName() {
         return this.attack.charged_moves.map(ele => {
             return ele.nom;
         })
     }
 
+    // 
     getTypes() {
         return this.type;
     }
