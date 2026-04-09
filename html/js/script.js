@@ -466,22 +466,63 @@ function detail(id){
     let detail = document.querySelector("#detail");
 
     detail.innerHTML = `
-        <h2>${pokemon.name}</h2>
-        <p>ID: ${pokemon.id}</p>
-        <p>Fast moves:</p>
-        <ul>
-            ${pokemon.attack.fast_moves.map(att => `<li>${att.affiche()}</li>`).join("")}
-        </ul>
-        <p>Charged moves:</p>
-        <ul>
-            ${pokemon.attack.charged_moves.map(att => `<li>${att.affiche()}</li>`).join("")}
-        </ul>
-        <p>STAMINA: ${pokemon.base.stamina}</p>
-        <p>ATTACK: ${pokemon.base.attack}</p>
-        <p>DEFENCE: ${pokemon.base.defense}</p>
-        <p>TYPES: ${pokemon.typesName()}</p>
-        <img src="./webp/thumbnails/${("000" + id).slice(-3)}.webp">
-        
+        <div>
+            <h2>${pokemon.name}</h2>
+            <p>ID: ${pokemon.id}</p>
+            <p>TYPES: ${pokemon.typesName()}</p>
+            <img src="./webp/thumbnails/${("000" + id).slice(-3)}.webp">
+            
+            <p>State de base</p>
+            <table>
+                <thead>
+                    <tr>
+                        <td>STAMINA</td>
+                        <td>ATTACK</td>
+                        <td>DEFENCE</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>${pokemon.base.stamina}</td>
+                        <td>${pokemon.base.attack}</td>
+                        <td>${pokemon.base.defense}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="tableAttaque">
+            <p>Fast moves:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>NAME</td>
+                        <td>TYPE</td>
+                        <td>POWER</td>
+                        <td>DURATION</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${pokemon.attack.fast_moves.map(att => `<tr>${ligneAttaque(att)}</tr>`).join("")}
+                </tbody>
+            </table>
+
+            <p>Charged moves:</p>
+            <table>
+                <thead>
+                    <tr>
+                        <td>ID</td>
+                        <td>NAME</td>
+                        <td>TYPE</td>
+                        <td>POWER</td>
+                        <td>DURATION</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    ${pokemon.attack.charged_moves.map(att => `<tr>${ligneAttaque(att)}</tr>`).join("")}
+                </tbody>
+            </table>
+        </div>
     `;
 console.log(pokemon.attack)
     detailConteneur.classList.remove("hidden");
@@ -496,3 +537,7 @@ document.querySelector("#detailConteneur").addEventListener("click", (e) => {
         e.currentTarget.classList.add("hidden");
     }
 });
+
+function ligneAttaque(att){
+    return `<td>${att.id}</td><td>${att.nom}</td><td>${att.type}</td><td>${att.puissance}</td><td>${att.duree}</td>`
+}
