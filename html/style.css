@@ -109,6 +109,10 @@ body>div:last-of-type {
         font-size:small;
     }
 
+    body>div:first-of-type th:nth-of-type(4),  body>div:first-of-type th:nth-of-type(5),  body>div:first-of-type th:nth-of-type(6),  body>div:first-of-type td:nth-of-type(4),  body>div:first-of-type td:nth-of-type(5),  body>div:first-of-type td:nth-of-type(6){
+        display: none;
+    }
+
     body > div:last-of-type{
         display: none;
     }
@@ -131,4 +135,6 @@ body>div:last-of-type {
     #detail th, #detail td{
         padding: 5px;
     }
+
+
 }
