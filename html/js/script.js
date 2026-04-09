@@ -466,7 +466,7 @@ function detail(id){
     let detail = document.querySelector("#detail");
 
     detail.innerHTML = `
-        <div>
+        <div class="infoPoke">
             <h2>${pokemon.name}</h2>
             <p>ID: ${pokemon.id}</p>
             <p>TYPES: ${pokemon.typesName()}</p>
@@ -524,11 +524,22 @@ function detail(id){
             </table>
         </div>
     `;
-console.log(pokemon.attack)
+    //console.log(pokemon.attack)
     detailConteneur.classList.remove("hidden");
 
+    let x = document.createElement("button");
+    let texte = document.createTextNode("x");
+    x.appendChild(texte);
+
+    let attribut = document.createAttribute("style");
+    attribut.value = `color: red; margin-top: 2em;`;
+    x.setAttributeNode(attribut);
     
-    console.log(pokemon)
+    x.addEventListener("click", () => {
+        //console.log("coucou")
+        detailConteneur.classList.add("hidden")})
+    window.document.getElementsByClassName("infoPoke")[0].appendChild(x);
+    //console.log(pokemon)
     
 }
 

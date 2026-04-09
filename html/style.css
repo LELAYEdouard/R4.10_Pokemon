@@ -25,7 +25,7 @@ body {
     padding: 0;
     height: 100vh;
     display: grid;
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: 60% 40%;
     border-collapse: collapse;
 }
 
