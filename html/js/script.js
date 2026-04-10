@@ -508,7 +508,7 @@ function detail(id) {
             <h2>${pokemon.name}</h2>
             <p>ID: ${pokemon.id}</p>
             <p>TYPES: ${pokemon.typesName().join(" ")}</p>
-            <img src="./webp/thumbnails/${("000" + id).slice(-3)}.webp">
+            <img src="./webp/thumbnails/${("000" + id).slice(-3)}.webp" onerror="this.src='./webp/thumbnail-none.webp'">
             
             <p>Base stats</p>
             <table>
