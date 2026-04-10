@@ -97,7 +97,7 @@ function popImage(id) {
     img.setAttributeNode(attribut);
 
     attribut = document.createAttribute("onerror");
-    attribut.value = `this.src='./webp/inconu.webp'`;
+    attribut.value = `this.src='./webp/image-none.webp'`;
     img.setAttributeNode(attribut);
 
     attribut = document.createAttribute("alt");
@@ -165,7 +165,7 @@ function ligneFill(ele) {
     img.setAttributeNode(attribut);
 
     attribut = document.createAttribute("onerror");
-    attribut.value = `this.src='./webp/inconu.webp'`;
+    attribut.value = `this.src='./webp/sprite-none.webp'`;
     img.setAttributeNode(attribut);
 
     attribut = document.createAttribute("alt");
