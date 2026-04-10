@@ -464,6 +464,7 @@ Object.keys(Type.all_types).forEach(elt => {
     document.getElementById("typeFiltre").appendChild(opt)
 })
 
+//met les option du filtre par attaques rapides avec toutes les attaques rapides
 fast_moves.forEach(elt => {
     let opt = document.createElement("option")
     opt.innerHTML = elt.name
@@ -471,14 +472,14 @@ fast_moves.forEach(elt => {
     document.getElementById("fastAttackFiltre").appendChild(opt)
 })
 
-
-
+//met a jour l'affichage des pokémons en fonction de la recherche de l'utilisateur
 document.getElementById("nomFiltre").addEventListener('input', () => {
     filtre_nom = document.getElementById("nomFiltre").value
     update()
     console.log("update: ", filtre_nom)
 })
 
+//met a jour l'affichage des pokémons en fonction du type choisi
 document.getElementById("typeFiltre").addEventListener('change', () => {
     filtre_type = document.getElementById("typeFiltre").value
     if (filtre_type === "") {
@@ -488,6 +489,7 @@ document.getElementById("typeFiltre").addEventListener('change', () => {
     console.log("update: ", filtre_type)
 })
 
+//met a jour l'affichage des pokémons en fonction de l'attaque choisi
 document.getElementById("fastAttackFiltre").addEventListener('change', () => {
     filtre_attaque_rapide = document.getElementById("fastAttackFiltre").value
     if (filtre_attaque_rapide === "") {
@@ -497,12 +499,14 @@ document.getElementById("fastAttackFiltre").addEventListener('change', () => {
     console.log("update: ", filtre_attaque_rapide)
 })
 
+//crée la popup pour afficher les informations du pokémon choisi (clic)
 function detail(id) {
     let pokemon = Pokemon.getPokemonID(id)
 
     let detailConteneur = document.querySelector("#detailConteneur");
     let detail = document.querySelector("#detail");
 
+    //html de la popup
     detail.innerHTML = `
         <div class="infoPoke">
             <h2>${pokemon.name}</h2>
@@ -562,6 +566,7 @@ function detail(id) {
             </table>
         </div>
     `;
+
     //console.log(pokemon.attack)
     detailConteneur.classList.remove("hidden");
 
@@ -580,9 +585,9 @@ function detail(id) {
     })
     window.document.getElementsByClassName("infoPoke")[0].appendChild(x);
     //console.log(pokemon)
-
 }
 
+//ajoute la classe hidden pour cacher le conteneur de la popup quand on clique dehors
 document.querySelector("#detailConteneur").addEventListener("click", (e) => {
     if (e.target.id === "detailConteneur") {
         e.currentTarget.classList.add("hidden");

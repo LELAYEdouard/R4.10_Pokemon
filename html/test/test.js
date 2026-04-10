@@ -1,8 +1,3 @@
-
-
-
-
-// getPokemonByType("Bug")
 function getPokemonsByType(typeName){
     console.log(Attack.all_attacks)
     let liste = Pokemon.all_pokemons2.filter(element => {
@@ -18,14 +13,17 @@ function getPokemonsByType(typeName){
 }
 
 function getPokemonByAttack(attackName){
-    
     let res = Pokemon.all_pokemons2.filter(element => {
+        //taableau de toutes les attaques chargé et rapides
         let tabAttack = element.attack.charged_moves.concat(element.attack.fast_moves);
+        //renvoie l'attaque recherché avec son nom
         return tabAttack.find(move => {
             return move.nom == attackName;
         })
     });
+
     console.log(`Liste des ${res.length} Pokemons avec l'attaque ${attackName}:`);
+    
     res.forEach(element => {
         console.log(`- ${element.toString()}`);
     })
